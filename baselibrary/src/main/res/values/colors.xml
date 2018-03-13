@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="login_title_color">#C7A77B</color>
+    <color name="login_text_color">#B2B2B2</color>
+    <color name="login_texthint_color">#20B2B2B2</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="black_color">#000000</color>
+    <color name="green_color">#41BC1F</color>
+    <color name="red_color">#FF0000</color>
+    <color name="apply_bound_color">#F3F1EC</color>
+    <color name="order_bg">#f3f1ec</color>
+    <color name="recyclerview_bg">#16D8D8D8</color>
+    <color name="abolish_order_bg">#FFE5E5E5</color>
+    <color name="dialog_button_color">#3F51B5</color>
+    <color name="order_item_bg">#F7F7F7</color>
+
+
+    <color name="lable_text_color">#999999</color>
+    <color name="lable_text_color2">#151515</color>
+    <color name="lable_text_color3">#666666</color>
+    <color name="lable_text_color4">#333333</color>
+    <color name="title_bg">#36302C</color>
+
+    <color name="order_name_color">#FF8C00</color>
+    <color name="login_btton_color">#A0C7A77B</color>
+    <color name="login_btton_text">#30C7A77B</color>
+    <color name="progress_color">#FF7103</color>
+
+
+    <color name="touming_color">#00000000</color>
+
+    <color name="normal_day">#ff999999</color>
+    <color name="selected_day_background">#E75F49</color>
+    <color name="selected_day_text">#fff2f2f2</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="color_553D23">#553D23</color>
+    <color name="color_FDFDFD">#FDFDFD</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_cd0000">#cd0000</color>
+    <color name="base_msg_color">#ff999999</color>
+
+    <color name="white">#ffffff</color>
+    <color name="gray">#cccccc</color>
+
+    <color name="drop_down_selected">#7B1FA2</color>
+    <color name="drop_down_unselected">#111111</color>
+
+    <color name="mask_color">#88888888</color>
+    <color name="check_bg">#f2f2f2</color>
+    <color name="un_press_color">#9C27B0</color>
+    <color name="bg_dropdown">#7f000000</color>
+
+</resources>

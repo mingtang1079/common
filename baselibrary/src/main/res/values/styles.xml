@@ -1,0 +1,126 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <item name="windowNoTitle">true</item>
+        <!--自定义AlertDialog-->
+        <item name="alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert.Self</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.Dialog.Alert.Self" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <!--修改AlertDialog按钮的颜色-->
+        <item name="colorAccent">@color/dialog_button_color</item>
+
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--修改toolbar弹出菜单的位置-->
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <!--兼容Api 21之前的版本 -->
+        <item name="overlapAnchor">false</item><!--把该属性改为false即可使menu位置位于toolbar之下-->
+    </style>
+
+    <!-- 有下拉Item的toolbar主题-->
+    <style name="multiToolBarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColor">#999999</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:colorBackground">#ffffff</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle
+        </item> <!--新增一个item，用于控制menu-->
+    </style>
+
+    <style name="AppCompat.Mydialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <!--修改AlertDialog按钮的颜色-->
+        <item name="android:background">@null</item>
+    </style>
+    <!-- 自定义loading dialog -->
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="common_custom_dialog_theme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+
+    <!--对话框从底部进入和退出-->
+    <style name="common_custom_anim_dialog_theme" parent="@style/common_custom_dialog_theme">
+        <item name="android:windowEnterAnimation">@anim/in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/out_from_bottom</item>
+    </style>
+
+    <!--webView 中toolbar sytle-->
+    <style name="toolBar_web">
+        <item name="colorControlNormal">#ffffff</item>
+        <item name="android:homeAsUpIndicator">@mipmap/ic_cha</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">#C7A77B</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">8dp</item>
+        <item name="tabPaddingEnd">8dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="style_txt_cd0000_14sp">
+        <item name="android:textColor">@color/color_cd0000</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+
+    <style name="style_txt_cd0000_16sp">
+        <item name="android:textColor">@color/color_cd0000</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="style_default_item_line_padding">
+        <item name="android:paddingLeft">11.5dp</item>
+        <item name="android:paddingRight">11.5dp</item>
+        <item name="android:paddingTop">10.5dp</item>
+        <item name="android:paddingBottom">10.5dp</item>
+    </style>
+
+    <!-- recycleview/listview  里面的item的margin -->
+    <style name="style_list_item_margin">
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <!-- recycleview/listview  里面的item的每一行里面的padding -->
+    <style name="style_list_item_line_padding">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <!-- recycleview/listview  里面的item的每一行里面的padding，只包含top bottom -->
+    <style name="style_list_item_line_padding_with_top_bottom">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>

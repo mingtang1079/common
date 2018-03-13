@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="key_title_bar" type="id" />
+    <item name="mTabIndicator" type="id" />
+    <item name="toolbar" type="id" />
+
+    <item name="tab" type="id" />
+    <item name="viewpager" type="id" />
+    <item name="swipe" type="id" />
+    <item name="recyclerview" type="id" />
+    <item name="mFilterContentView" type="id" />
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.appbaselib.view.datepicker.view.GregorianLunarCalendarView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:id="@+id/calendar_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    app:glcv_GregorianThemeColor="@color/colorAccent"
+    app:glcv_LunarThemeColor="@color/colorAccent"
+    app:glcv_NormalTextColor="#FF777777"
+    app:glcv_ScrollAnimation="true">
+
+</com.appbaselib.view.datepicker.view.GregorianLunarCalendarView>
