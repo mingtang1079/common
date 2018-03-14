@@ -2,11 +2,11 @@
 <com.appbaselib.view.datepicker.view.DateTimeView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
     android:id="@+id/calendar_time_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
+    android:padding="16dp"
     app:glcv_GregorianThemeColor="@color/colorAccent"
     app:glcv_LunarThemeColor="@color/colorAccent"
     app:glcv_NormalTextColor="#FF777777"

@@ -1,0 +1,54 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/time_picker"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+    <com.appbaselib.widget.NumberPickerView
+        android:id="@+id/picker_half_day"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="picker_half_day"
+        app:npv_ItemPaddingHorizontal="12dp"
+        app:npv_ItemPaddingVertical="12dp"
+        app:npv_ShowCount="3"
+        app:npv_TextArray="@array/half_day"
+        app:npv_TextSizeNormal="16sp"
+        app:npv_TextSizeSelected="20sp"
+        app:npv_WrapSelectorWheel="false"/>
+
+    <com.appbaselib.widget.NumberPickerView
+        android:id="@+id/picker_hour"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="1"
+        android:contentDescription="picker_hour"
+        app:npv_HintText="@string/hour_hint"
+        app:npv_RespondChangeInMainThread="false"
+        app:npv_ShowCount="3"
+        app:npv_TextArray="@array/hour_display"
+        app:npv_TextSizeNormal="16sp"
+        app:npv_TextSizeSelected="20sp"
+        app:npv_WrapSelectorWheel="true"/>
+
+    <com.appbaselib.widget.NumberPickerView
+        android:id="@+id/picker_minute"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="picker_minute"
+        app:npv_HintText="@string/minute_hint"
+        app:npv_ShowCount="3"
+        app:npv_TextArray="@array/minute_display"
+        app:npv_TextSizeNormal="16sp"
+        app:npv_TextSizeSelected="20sp"
+        app:npv_WrapSelectorWheel="true"/>
+
+
+</LinearLayout>

@@ -16,6 +16,12 @@ android {
                 arguments = [ moduleName : project.getName() ]
             }
         }
+        //解决gradle 3.0 butterknife不能用的问题
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
     }
     buildTypes {
         release {
