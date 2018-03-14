@@ -15,7 +15,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import rx.subscriptions.CompositeSubscription;
 
 
 /**

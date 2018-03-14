@@ -15,20 +15,16 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 /**
  * Created by CLOUD on 2016/10/14.
  */
 
-public abstract class SuperRetrofitHelper<T> {
+public abstract class AbstractRetrofitHelper<T> {
 
-    protected static SuperRetrofitHelper mInstance;
-
+    protected static AbstractRetrofitHelper mInstance;
     private T mApi;
-
     private OkHttpClient okHttpClient = null;
-
     private Retrofit retrofit;
 
     private void init() {
@@ -36,7 +32,7 @@ public abstract class SuperRetrofitHelper<T> {
         initRetrofit();
     }
 
-    protected SuperRetrofitHelper() {
+    protected AbstractRetrofitHelper() {
         mInstance = this;
         init();
     }
@@ -82,11 +78,9 @@ public abstract class SuperRetrofitHelper<T> {
                 clientBuilder.addInterceptor(interceptor);
             }
         }
-
         clientBuilder.connectTimeout(10 * 1000L, TimeUnit.MILLISECONDS);
         clientBuilder.readTimeout(10 * 1000L, TimeUnit.MILLISECONDS);
         clientBuilder.retryOnConnectionFailure(true);
-        //  if (BuildConfig.DEBUG) {    alter by tangming   android stuio  的bug  debug一直为false 导致不显示log
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
@@ -95,7 +89,6 @@ public abstract class SuperRetrofitHelper<T> {
         });
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         clientBuilder.addInterceptor(loggingInterceptor);
-        //   }
         clientBuilder.hostnameVerifier(new HostnameVerifier() {
             @Override
             public boolean verify(String hostname, SSLSession session) {
@@ -110,10 +103,6 @@ public abstract class SuperRetrofitHelper<T> {
 
     protected abstract List<Interceptor> getCustomInterceptors();
 
-    public void addAuth() {
-        init();
-    }
-
     public Retrofit getRetrofit() {
         return retrofit;
     }
@@ -121,7 +110,6 @@ public abstract class SuperRetrofitHelper<T> {
     public void setRetrofit(Retrofit retrofit) {
         this.retrofit = retrofit;
     }
-
 
 
 }

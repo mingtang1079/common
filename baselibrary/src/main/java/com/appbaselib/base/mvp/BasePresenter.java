@@ -5,8 +5,6 @@ import android.content.Context;
 
 import org.greenrobot.eventbus.EventBus;
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 
 /*
  * Description: Presenter基类，主要只做了注册EventBus，注册rx订阅监听，还有销毁时把对象置null
@@ -16,7 +14,6 @@ import rx.subscriptions.CompositeSubscription;
  */
 public class BasePresenter<V extends MvpView> implements IPresenter {
     protected final String TAG = this.getClass().getSimpleName();
-    protected CompositeSubscription mCompositeSubscription;
 
 
     protected V mRootView;
@@ -45,7 +42,6 @@ public class BasePresenter<V extends MvpView> implements IPresenter {
         unSubscribe();//解除订阅
 
         this.mRootView = null;
-        this.mCompositeSubscription = null;
     }
 
     /**
@@ -58,18 +54,13 @@ public class BasePresenter<V extends MvpView> implements IPresenter {
     }
 
     //将所有subscription放入,集中处理
-    protected void addSubscribe(Subscription subscription) {
-        if (mCompositeSubscription == null) {
-            mCompositeSubscription = new CompositeSubscription();
-        }
-        mCompositeSubscription.add(subscription);
+    protected void addSubscribe( ) {
+
     }
 
     //保证activity结束时取消所有正在执行的订阅
     protected void unSubscribe() {
-        if (mCompositeSubscription != null) {
-            mCompositeSubscription.unsubscribe();
-        }
+
     }
 
 

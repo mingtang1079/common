@@ -1,13 +1,23 @@
 package com.appbaselib.rx;
 
+import com.appbaselib.app.BaseApplication;
 import com.appbaselib.base.BaseModel;
 import com.appbaselib.base.BaseModelWrapper;
+import com.appbaselib.netstatus.NetUtils;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
+import org.reactivestreams.Subscriber;
+
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class RxHelper {
 
@@ -17,60 +27,24 @@ public class RxHelper {
      * @param <T>
      * @return
      */
-    public static <T> Observable.Transformer<BaseModel<T>, T> handleResult() {
-        return new Observable.Transformer<BaseModel<T>, T>() {
+    public static <T> ObservableTransformer<BaseModel<T>, BaseModel<T>> handleResult() {
+        return new ObservableTransformer<BaseModel<T>, BaseModel<T>>() {
             @Override
-            public Observable<T> call(Observable<BaseModel<T>> tObservable) {
-                return tObservable.flatMap(new Func1<BaseModel<T>, Observable<T>>() {
-                    @Override
-                    public Observable<T> call(BaseModel<T> result) {
+            public ObservableSource<BaseModel<T>> apply(Observable<BaseModel<T>> upstream) {
+                return upstream
+                        .subscribeOn(Schedulers.io())
+                        .doOnSubscribe(new Consumer<Disposable>() {
+                            @Override
+                            public void accept(Disposable disposable) throws Exception {
+                                if (!NetUtils.isNetworkAvailable(BaseApplication.mInstance)) {
+                                    // TODO: 2018/3/14
+                                }
+                            }
+                        })
+                        .observeOn(AndroidSchedulers.mainThread());
 
-                        if (result.getCode() == 200) {
-                            return createData(result.getData());
-                        } else {
-                            return Observable.error(new ServerException(result.getMsg()));
-                        }
-                    }
-                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
             }
         };
-
-    }
-
-    /**
-     * 对结果进行二次处理 ，带分页数据
-     *
-     * @param <T>
-     * @return
-     */
-
-    public static <T> Observable.Transformer<BaseModel<T>, BaseModelWrapper<T>> handleResult2() {
-        return new Observable.Transformer<BaseModel<T>, BaseModelWrapper<T>>() {
-            @Override
-            public Observable<BaseModelWrapper<T>> call(Observable<BaseModel<T>> tObservable) {
-                Observable<BaseModelWrapper<T>> observable = tObservable.flatMap(new Func1<BaseModel<T>, Observable<BaseModelWrapper<T>>>() {
-                    @Override
-                    public Observable<BaseModelWrapper<T>> call(BaseModel<T> result) {
-
-                        if (result.isSuccess()) {
-
-                            BaseModelWrapper<T> mBaseModelWrapper = new BaseModelWrapper<T>();
-                            mBaseModelWrapper.data = result.getData();
-                            mBaseModelWrapper.totalCount = result.getTotalCount();
-                            mBaseModelWrapper.pageNo = result.getPageNo();
-                            mBaseModelWrapper.pageSize = result.getPageSize();
-                            mBaseModelWrapper.timestamp = result.getTimestamp();
-                            return createData(mBaseModelWrapper);
-
-                        } else {
-                            return Observable.error(new ServerException(result.getMsg()));
-                        }
-                    }
-                }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-                return observable;
-            }
-        };
-
     }
 
     /**
@@ -81,12 +55,12 @@ public class RxHelper {
      * @return
      */
     private static <T> Observable<T> createData(final T data) {
-        return Observable.create(new Observable.OnSubscribe<T>() {
+        return Observable.create(new ObservableOnSubscribe<T>() {
             @Override
-            public void call(Subscriber<? super T> subscriber) {
+            public void subscribe(ObservableEmitter<T> subscriber) throws Exception {
                 try {
                     subscriber.onNext(data);
-                    subscriber.onCompleted();
+                    subscriber.onComplete();
                 } catch (Exception e) {
                     subscriber.onError(e);
                 }
@@ -102,11 +76,11 @@ public class RxHelper {
      * @return
      */
 
-    public static <T> Observable.Transformer<BaseModel<T>, BaseModel<T>> rxSchedulerHelper() {
-        return new Observable.Transformer<BaseModel<T>, BaseModel<T>>() {
+    public static <T> ObservableTransformer<BaseModel<T>, BaseModel<T>> rxSchedulerHelper() {
+        return new ObservableTransformer<BaseModel<T>, BaseModel<T>>() {
             @Override
-            public Observable<BaseModel<T>> call(Observable<BaseModel<T>> source) {
-                return source.subscribeOn(Schedulers.io())
+            public ObservableSource<BaseModel<T>> apply(Observable<BaseModel<T>> upstream) {
+                return upstream.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread());
             }
         };
