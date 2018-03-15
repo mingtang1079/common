@@ -12,16 +12,16 @@ import com.appbaselib.rx.ServerException;
 import com.appbaselib.utils.NetWorkUtils;
 import com.google.gson.JsonSyntaxException;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 /**
  * 通用订阅者,用于统一处理回调
  */
-public abstract class DefaultSubscriber2<T> implements Observer<BaseModel<T>> {
+public abstract class ResponceSubscriber<T> implements Subscriber<BaseModel<T>> {
 
     private Context mContext;
-    private Disposable mDisposable;
+    private Subscription mSubscription;
     private ProgressDialog mProgressDialog;
     private String title;
     private String message;
@@ -34,14 +34,14 @@ public abstract class DefaultSubscriber2<T> implements Observer<BaseModel<T>> {
      * @param context  context
      * @param mMessage dialog message
      */
-    public DefaultSubscriber2(Context context, String ttile, String mMessage) {
+    public ResponceSubscriber(Context context, String ttile, String mMessage) {
         this.message = mMessage;
         this.mContext = context;
         this.title = ttile;
     }
 
 
-    public DefaultSubscriber2(Context context, String mMessage) {
+    public ResponceSubscriber(Context context, String mMessage) {
         this(context, null, mMessage);
 
     }
@@ -49,11 +49,11 @@ public abstract class DefaultSubscriber2<T> implements Observer<BaseModel<T>> {
     /**
      * @param context context 加入dialog
      */
-    public DefaultSubscriber2(Context context) {
+    public ResponceSubscriber(Context context) {
         this(context, "请稍后……");
     }
 
-    public DefaultSubscriber2() {
+    public ResponceSubscriber() {
 
     }
 
@@ -62,8 +62,8 @@ public abstract class DefaultSubscriber2<T> implements Observer<BaseModel<T>> {
     }
 
     @Override
-    public void onSubscribe(Disposable b) {
-        mDisposable = b;
+    public void onSubscribe(Subscription b) {
+        mSubscription = b;
 
         if (mContext != null) {
             mProgressDialog = new ProgressDialog(mContext);
@@ -79,7 +79,7 @@ public abstract class DefaultSubscriber2<T> implements Observer<BaseModel<T>> {
             mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialog) {
-                    mDisposable.dispose();
+                    mSubscription.cancel();
                 }
             });
             mProgressDialog.show();
@@ -90,7 +90,13 @@ public abstract class DefaultSubscriber2<T> implements Observer<BaseModel<T>> {
     public void onNext(BaseModel<T> mBaseModel) {
         if (mContext != null)
             mProgressDialog.dismiss();
-        onSucess(mBaseModel.getData()); //android生命周期组件里面 包装请求状态会用到
+
+        if (mBaseModel.getCode() == 200) {
+            onSucess(mBaseModel.getData());
+
+        } else {
+            onFail(mBaseModel.getMsg());
+        }
     }
 
     @Override

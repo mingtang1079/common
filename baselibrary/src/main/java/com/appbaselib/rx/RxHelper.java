@@ -1,13 +1,21 @@
 package com.appbaselib.rx;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.content.Context;
+
 import com.appbaselib.app.BaseApplication;
 import com.appbaselib.base.BaseModel;
 import com.appbaselib.base.BaseModelWrapper;
 import com.appbaselib.netstatus.NetUtils;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
+import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 import io.reactivex.Flowable;
+import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -27,23 +35,23 @@ public class RxHelper {
      * @param <T>
      * @return
      */
-    public static <T> ObservableTransformer<BaseModel<T>, BaseModel<T>> handleResult() {
-        return new ObservableTransformer<BaseModel<T>, BaseModel<T>>() {
+    public static <T> FlowableTransformer<BaseModel<T>, BaseModel<T>> handleResult(Context mContext) {
+        return new FlowableTransformer<BaseModel<T>, BaseModel<T>>() {
             @Override
-            public ObservableSource<BaseModel<T>> apply(Observable<BaseModel<T>> upstream) {
+            public Publisher<BaseModel<T>> apply(Flowable<BaseModel<T>> upstream) {
                 return upstream
                         .subscribeOn(Schedulers.io())
-                        .doOnSubscribe(new Consumer<Disposable>() {
+                        //.as(AutoDispose.<BaseModel<T>>autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mContext)))
+                        .doOnSubscribe(new Consumer<Subscription>() {
                             @Override
-                            public void accept(Disposable disposable) throws Exception {
-                                if (!NetUtils.isNetworkAvailable(BaseApplication.mInstance)) {
-                                    // TODO: 2018/3/14
-                                }
+                            public void accept(Subscription mSubscription) throws Exception {
+
                             }
                         })
-                        .observeOn(AndroidSchedulers.mainThread());
-
+                        .observeOn(AndroidSchedulers.mainThread())
+                        ;
             }
+
         };
     }
 

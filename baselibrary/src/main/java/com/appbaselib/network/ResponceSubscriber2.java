@@ -5,23 +5,20 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.appbaselib.app.BaseApplication;
 import com.appbaselib.base.BaseModel;
 import com.appbaselib.rx.ServerException;
 import com.appbaselib.utils.NetWorkUtils;
-import com.appbaselib.utils.ToastUtils;
 import com.google.gson.JsonSyntaxException;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import retrofit2.adapter.rxjava2.HttpException;
 
 /**
  * 通用订阅者,用于统一处理回调
  */
-public abstract class DefaultSubscriber<T> implements Observer<BaseModel<T>> {
+public abstract class ResponceSubscriber2<T> implements Observer<BaseModel<T>> {
 
     private Context mContext;
     private Disposable mDisposable;
@@ -37,14 +34,14 @@ public abstract class DefaultSubscriber<T> implements Observer<BaseModel<T>> {
      * @param context  context
      * @param mMessage dialog message
      */
-    public DefaultSubscriber(Context context, String ttile, String mMessage) {
+    public ResponceSubscriber2(Context context, String ttile, String mMessage) {
         this.message = mMessage;
         this.mContext = context;
         this.title = ttile;
     }
 
 
-    public DefaultSubscriber(Context context, String mMessage) {
+    public ResponceSubscriber2(Context context, String mMessage) {
         this(context, null, mMessage);
 
     }
@@ -52,11 +49,11 @@ public abstract class DefaultSubscriber<T> implements Observer<BaseModel<T>> {
     /**
      * @param context context 加入dialog
      */
-    public DefaultSubscriber(Context context) {
+    public ResponceSubscriber2(Context context) {
         this(context, "请稍后……");
     }
 
-    public DefaultSubscriber() {
+    public ResponceSubscriber2() {
 
     }
 
@@ -93,13 +90,7 @@ public abstract class DefaultSubscriber<T> implements Observer<BaseModel<T>> {
     public void onNext(BaseModel<T> mBaseModel) {
         if (mContext != null)
             mProgressDialog.dismiss();
-
-        if (mBaseModel.getCode() == 200) {
-            onSucess(mBaseModel.getData());
-
-        } else {
-            onFail(mBaseModel.getMsg());
-        }
+        onSucess(mBaseModel.getData()); //android生命周期组件里面 包装请求状态会用到
     }
 
     @Override
