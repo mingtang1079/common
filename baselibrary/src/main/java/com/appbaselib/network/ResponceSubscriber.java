@@ -12,16 +12,16 @@ import com.appbaselib.rx.ServerException;
 import com.appbaselib.utils.NetWorkUtils;
 import com.google.gson.JsonSyntaxException;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * 通用订阅者,用于统一处理回调
  */
-public abstract class ResponceSubscriber<T> implements Subscriber<BaseModel<T>> {
+public abstract class ResponceSubscriber<T> implements Observer<BaseModel<T>> {
 
     private Context mContext;
-    private Subscription mSubscription;
+    private Disposable mDisposable;
     private ProgressDialog mProgressDialog;
     private String title;
     private String message;
@@ -62,8 +62,8 @@ public abstract class ResponceSubscriber<T> implements Subscriber<BaseModel<T>> 
     }
 
     @Override
-    public void onSubscribe(Subscription b) {
-        mSubscription = b;
+    public void onSubscribe(Disposable b) {
+        mDisposable = b;
 
         if (mContext != null) {
             mProgressDialog = new ProgressDialog(mContext);
@@ -79,7 +79,7 @@ public abstract class ResponceSubscriber<T> implements Subscriber<BaseModel<T>> 
             mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialog) {
-                    mSubscription.cancel();
+                    mDisposable.dispose();
                 }
             });
             mProgressDialog.show();
