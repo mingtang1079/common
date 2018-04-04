@@ -41,7 +41,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.parallel.ParallelFlowable;
 import io.reactivex.schedulers.Schedulers;
-
 import static com.uber.autodispose.ScopeUtil.deferredResolvedLifecycle;
 
 public class RxHelper {
@@ -107,7 +106,7 @@ public class RxHelper {
             @Override
             public ObservableSubscribeProxy<BaseModel<T>> apply(Observable<BaseModel<T>> upstream) {
                 return upstream
-                         .compose(handleResult())//加入线程切换
+                        .compose(handleResult())//加入线程切换
                         .to(new ObservableScoper<BaseModel<T>>(scope));
             }
 
