@@ -41,6 +41,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.parallel.ParallelFlowable;
 import io.reactivex.schedulers.Schedulers;
+
 import static com.uber.autodispose.ScopeUtil.deferredResolvedLifecycle;
 
 public class RxHelper {
@@ -79,7 +80,7 @@ public class RxHelper {
      */
     public static <T> AutoDisposeConverter<BaseModel<T>> handleResult(Context mContext) {
 
-        final Maybe scope = deferredResolvedLifecycle(Utils.checkNotNull(AndroidLifecycleScopeProvider.from((LifecycleOwner) mContext), "provider == null"));
+        Maybe scope = deferredResolvedLifecycle(Utils.checkNotNull(AndroidLifecycleScopeProvider.from((LifecycleOwner) mContext), "provider == null"));
         Utils.checkNotNull(scope, "scope == null");
 
         return new AutoDisposeConverter<BaseModel<T>>() {
@@ -106,7 +107,7 @@ public class RxHelper {
             @Override
             public ObservableSubscribeProxy<BaseModel<T>> apply(Observable<BaseModel<T>> upstream) {
                 return upstream
-                      //  .compose(handleResult())//加入线程切换
+                         .compose(handleResult())//加入线程切换
                         .to(new ObservableScoper<BaseModel<T>>(scope));
             }
 
