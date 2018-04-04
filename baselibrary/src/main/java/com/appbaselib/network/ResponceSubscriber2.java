@@ -90,11 +90,11 @@ public abstract class ResponceSubscriber2<T> implements Observer<BaseModel<T>> {
     public void onNext(BaseModel<T> mBaseModel) {
         if (mContext != null)
             mProgressDialog.dismiss();
-        if (mBaseModel.getCode() == 200) {
+        if (mBaseModel.code == 200) {
             onSucess(mBaseModel);//android生命周期组件里面 包装请求状态会用到
 
         } else {
-            onFail(mBaseModel.getMsg());
+            onFail(mBaseModel.msg);
         }
     }
 
