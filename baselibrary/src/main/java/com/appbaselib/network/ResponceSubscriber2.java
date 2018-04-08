@@ -16,7 +16,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 /**
- * 通用订阅者,用于统一处理回调
+ * 通用订阅者,用于统一处理回调（返回结果状态）
  */
 public abstract class ResponceSubscriber2<T> implements Observer<BaseModel<T>> {
 
