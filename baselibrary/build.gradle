@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 //apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
@@ -29,11 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '26.0.2'
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
 }
 
 dependencies {

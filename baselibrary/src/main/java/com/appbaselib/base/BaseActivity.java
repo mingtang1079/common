@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.appbaselib.loading.VaryViewHelperController;
 import com.appbaselib.netstatus.NetUtils;
 import com.appbaselib.utils.LogUtils;
@@ -28,6 +29,7 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ARouter.getInstance().inject(this);
         findView();//用于解决部分控件使用了VaryViewHelperController，在在initView中初始化的问题(R2不知道为啥不起作用)
         ButterKnife.bind(this);
         if (null != getLoadingTargetView()) {
