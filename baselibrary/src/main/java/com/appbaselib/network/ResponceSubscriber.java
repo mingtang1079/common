@@ -91,7 +91,7 @@ public abstract class ResponceSubscriber<T> implements Observer<BaseModel<T>> {
         if (mContext != null)
             mProgressDialog.dismiss();
 
-        if (mBaseModel.code == 200) {
+        if (mBaseModel.status) {
             onSucess(mBaseModel.data);
 
         } else {
