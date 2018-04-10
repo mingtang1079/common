@@ -59,7 +59,8 @@ public abstract class AbstractRetrofitHelper<T> {
         return new Retrofit.Builder()
                 .baseUrl(specifyHost)
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(ExclusionStrategiesGson.getExclusionStrategiesGson()))
+                //   .addConverterFactory(GsonConverterFactory.create(ExclusionStrategiesGson.getExclusionStrategiesGson()))
+                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

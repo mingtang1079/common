@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.appbaselib.loading.VaryViewHelperController;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
@@ -33,6 +34,7 @@ public abstract class BaseFragment extends BaseLazyFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ARouter.getInstance().inject(this);
         getArgumentData();
         if (registerEventBus()) {
             EventBus.getDefault().register(this);
