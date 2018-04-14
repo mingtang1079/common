@@ -56,6 +56,7 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
                     finish();
                 }
             });
+            getToolbar().setTitleTextAppearance(mContext,R.style.ToolbarTitleText);
         } else {
             LogUtils.e("木有toolbar");
         }

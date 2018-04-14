@@ -2,13 +2,13 @@
 
     <!-- Base application theme. -->
     <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-        <!--&lt;!&ndash;<item name="colorPrimary">@color/colorPrimary</item>&ndash;&gt;-->
-        <!--&lt;!&ndash;<item name="colorPrimaryDark">@color/colorPrimaryDark</item>&ndash;&gt;-->
-        <!--&lt;!&ndash;<item name="colorAccent">@color/colorAccent</item>&ndash;&gt;-->
-        <!--<item name="windowNoTitle">true</item>-->
-        <!--&lt;!&ndash;自定义AlertDialog&ndash;&gt;-->
-        <!--<item name="alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert.Self</item>-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--&lt;!&ndash;<item name="colorPrimary">@color/colorPrimary</item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<item name="colorPrimaryDark">@color/colorPrimaryDark</item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<item name="colorAccent">@color/colorAccent</item>&ndash;&gt;-->
+    <!--<item name="windowNoTitle">true</item>-->
+    <!--&lt;!&ndash;自定义AlertDialog&ndash;&gt;-->
+    <!--<item name="alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert.Self</item>-->
     <!--</style>-->
 
     <style name="Theme.AppCompat.Light.Dialog.Alert.Self" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
@@ -120,7 +120,12 @@
     </style>
 
     <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/white</item>
     </style>
+
+    <declare-styleable name="RatioImageView">
+        <attr name="ratio" format="float"/>
+    </declare-styleable>
 
 </resources>
