@@ -46,25 +46,6 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="common_custom_dialog_theme" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <!-- 边框 -->
-        <item name="android:windowIsFloating">true</item>
-        <!-- 是否浮现在activity之上 -->
-        <item name="android:windowIsTranslucent">false</item>
-        <!-- 半透明 -->
-        <item name="android:windowNoTitle">true</item>
-        <!-- 无标题 -->
-        <item name="android:backgroundDimEnabled">true</item>
-        <!-- 模糊 -->
-    </style>
-
-    <!--对话框从底部进入和退出-->
-    <style name="common_custom_anim_dialog_theme" parent="@style/common_custom_dialog_theme">
-        <item name="android:windowEnterAnimation">@anim/in_from_bottom</item>
-        <item name="android:windowExitAnimation">@anim/out_from_bottom</item>
-    </style>
-
     <!--webView 中toolbar sytle-->
     <style name="toolBar_web">
         <item name="colorControlNormal">#ffffff</item>

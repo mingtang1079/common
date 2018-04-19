@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.appbaselib.loading.VaryViewHelperController;
-import com.tbruyelle.rxpermissions.RxPermissions;
-
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;

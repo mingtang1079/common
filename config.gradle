@@ -102,7 +102,7 @@ ext {
             "rxcache-jolyglot-gson"        : "com.github.VictorAlbertos.Jolyglot:gson:0.0.3",
             "rxbinding-recyclerview-v7"    : "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:1.0.1",
             "rxbinding"                    : "com.jakewharton.rxbinding2:rxbinding:2.0.0",
-            "rxpermissions"                : "com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar",
+            "rxpermissions"                : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar",
             "rxerrorhandler"               : "me.jessyan:rxerrorhandler:1.0.1",
 
             //rx2

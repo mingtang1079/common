@@ -1,12 +1,7 @@
 package com.appbaselib.constant;
 
-/**
- * Description: App常量
- * Created by lbw on 2017/4/13 0013.
- */
-
 public class Constants {
-    /** App升级包位置 */
+    public static final String PRE_USER = "pre_user";
 
 
     public static String cookie = "";
