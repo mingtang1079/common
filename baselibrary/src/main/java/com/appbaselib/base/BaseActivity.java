@@ -45,6 +45,7 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
 
     // 初始化Toolbar
     @CallSuper
+    @Deprecated //直接去iniview 实例化
     protected void initToolbar() {
         if (getToolbar() != null) {   //设置标题必须在此之前设置  （比如initview）
 //            setSupportActionBar(getToolbar());
@@ -56,7 +57,7 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
                     finish();
                 }
             });
-            getToolbar().setTitleTextAppearance(mContext,R.style.ToolbarTitleText);
+        //    getToolbar().setTitleTextAppearance(mContext,R.style.ToolbarTitleText);
         } else {
             LogUtils.e("木有toolbar");
         }

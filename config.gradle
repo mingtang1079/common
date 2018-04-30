@@ -164,6 +164,7 @@ ext {
             "autodispose"                 : "com.uber.autodispose:autodispose:${version["VAutoDispose"]}",
             "autodispose-android" :"com.uber.autodispose:autodispose-android:${version["VAutoDispose"]}",
             "autodispose-android-archcomponents" :"com.uber.autodispose:autodispose-android-archcomponents:${version["VAutoDispose"]}",
+            "pull_refresh":"com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5"
 
     ]
 
