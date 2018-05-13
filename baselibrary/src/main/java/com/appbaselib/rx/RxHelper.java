@@ -5,10 +5,8 @@ import android.content.Context;
 
 import com.appbaselib.app.BaseApplication;
 import com.appbaselib.base.BaseModel;
-import com.appbaselib.base.BaseModelWrapper;
 import com.appbaselib.netstatus.NetUtils;
-import com.appbaselib.utils.Utils;
-import com.uber.autodispose.AutoDispose;
+import com.appbaselib.utils.NullUtils;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.CompletableScoper;
 import com.uber.autodispose.CompletableSubscribeProxy;
@@ -23,13 +21,10 @@ import com.uber.autodispose.SingleScoper;
 import com.uber.autodispose.SingleSubscribeProxy;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
-import org.reactivestreams.Subscriber;
-
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
-import io.reactivex.ObservableConverter;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
@@ -38,7 +33,6 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.parallel.ParallelFlowable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -80,8 +74,8 @@ public class RxHelper {
      */
     public static <T> AutoDisposeConverter<BaseModel<T>> handleResult(Context mContext) {
 
-        final Maybe scope = deferredResolvedLifecycle(Utils.checkNotNull(AndroidLifecycleScopeProvider.from((LifecycleOwner) mContext), "provider == null"));
-        Utils.checkNotNull(scope, "scope == null");
+        final Maybe scope = deferredResolvedLifecycle(NullUtils.checkNotNull(AndroidLifecycleScopeProvider.from((LifecycleOwner) mContext), "provider == null"));
+        NullUtils.checkNotNull(scope, "scope == null");
 
         return new AutoDisposeConverter<BaseModel<T>>() {
             @Override

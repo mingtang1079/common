@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.appbaselib.adapter.FragmentAdapter;
 import com.appbaselib.utils.ScreenUtils;
 import com.pangu.appbaselibrary.R;
 import java.lang.reflect.Field;
@@ -59,76 +61,5 @@ public abstract class BaseTabActivity extends BaseActivity {
     }
 
 
-    //fragmentAdapter
-    public static class FragmentAdapter extends FragmentPagerAdapter {
-        private String[] titles;
-        private List<Fragment> fragments;
-
-        public FragmentAdapter(FragmentManager fm, List<Fragment> fragments, String[] mStrings) {
-            super(fm);
-            titles = mStrings;
-            this.fragments = fragments;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return titles[position];
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-    }
-
-    // 加入设置tab线的长度改变
-    public void setTabLine(TabLayout tabLayout, int left, int right) {
-        try {
-            //拿到tabLayout的mTabStrip属性
-            Field mTabStripField = tabLayout.getClass().getDeclaredField("mTabStrip");
-            mTabStripField.setAccessible(true);
-
-            LinearLayout mTabStrip = (LinearLayout) mTabStripField.get(tabLayout);
-
-            for (int i = 0; i < mTabStrip.getChildCount(); i++) {
-                View tabView = mTabStrip.getChildAt(i);
-
-                //拿到tabView的mTextView属性
-                Field mTextViewField = tabView.getClass().getDeclaredField("mTextView");
-                mTextViewField.setAccessible(true);
-
-                TextView mTextView = (TextView) mTextViewField.get(tabView);
-
-                tabView.setPadding(0, 0, 0, 0);
-
-                //字多宽线就多宽，所以测量mTextView的宽度
-                int width = 0;
-                width = mTextView.getWidth();
-                if (width == 0) {
-                    mTextView.measure(0, 0);
-                    width = mTextView.getMeasuredWidth();
-                }
-
-                //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
-                params.width = width;
-                params.setMargins(ScreenUtils.dp2px(BaseTabActivity.this,16),0, ScreenUtils.dp2px(BaseTabActivity.this,16),0);
-                tabView.setLayoutParams(params);
-
-                tabView.invalidate();
-            }
-
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-    }
 
 }
