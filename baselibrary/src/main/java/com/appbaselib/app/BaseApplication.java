@@ -5,8 +5,8 @@ import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.appbaselib.utils.CommonUtils;
 import com.appbaselib.utils.SystemUtils;
-import com.pangu.appbaselibrary.BuildConfig;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.List;
@@ -29,6 +29,11 @@ public abstract class BaseApplication extends MultiDexApplication {
         super.onCreate();
         mInstance = this;
         AppManager.getInstance().setApplication(mInstance);//给App管理器设置上下文
+        /**检测当前进程名称是否为应用包名，否则return （像百度地图等sdk需要在单独的进程中执行，会多次执行Application的onCreate()方法，所以为了只初始化一次应用配置，作此判断）*/
+        if (!CommonUtils.getCurProcessName(this).equals(getPackageName())) {
+            return;
+        }
+
         mActivityLifecycle = new ActivityLifecycle(mInstance);
         registerActivityLifecycleCallbacks(mActivityLifecycle);
 
