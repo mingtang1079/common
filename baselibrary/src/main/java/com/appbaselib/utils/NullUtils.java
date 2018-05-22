@@ -15,4 +15,8 @@ public class NullUtils {
             return value;
         }
     }
+
+    public static <T extends CharSequence> T fillNull(T source) {
+        return (T) (android.text.TextUtils.isEmpty(source) ? "" : source.toString());
+    }
 }
