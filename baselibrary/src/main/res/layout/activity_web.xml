@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/white_color"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextAppearance="@style/ToolbarTitleText" />
-    <ProgressBar
-        android:id="@+id/"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        app:titleTextAppearance="@style/toolbar_style"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"/>
 
-    <LinearLayout
-        android:id="@+id/lin"
+    <ProgressBar
+        style="@style/InitProgressBar"
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <WebView
+        android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical"/>
 
 </LinearLayout>
