@@ -27,12 +27,11 @@ import com.pangu.appbaselibrary.R;
 public class Html5Activity extends BaseActivity {
 
     @Autowired
-    String url;
-    ;
+    public String url;
 
-    private Toolbar mToolbar;
-    private WebView mWebView;
-    ProgressBar mProgressBar;
+    public Toolbar mToolbar;
+    public WebView mWebView;
+    public ProgressBar mProgressBar;
 
     @Override
     public Toolbar getToolbar() {
@@ -40,13 +39,18 @@ public class Html5Activity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
-
-        Log.d("Url:", url);
+    protected void findView() {
+        super.findView();
 
         mToolbar = findViewById(R.id.toolbar);
         mProgressBar = findViewById(R.id.progress);
-        mWebView=findViewById(R.id.webview);
+        mWebView = findViewById(R.id.webview);
+    }
+
+    @Override
+    protected void initView() {
+
+        Log.d("Url:", url);
 
         WebSettings mWebSettings = mWebView.getSettings();
         mWebSettings.setSupportZoom(true);

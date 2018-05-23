@@ -164,27 +164,25 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
 
     public void loadComplete(List<? extends T> mData) {
 
-        // 2017.6.8防止 mdata 为空的情况  ，（后台数据返回为null）
-        if (mData == null)
-            mData = new ArrayList<>();
+        if (isFirstReresh)
+            mRecyclerview.setAdapter(mAdapter);  //如果一开始就设置，会导致 先出现  空数据 再加载数据
 
-        if (isReReresh) {
-            mList.clear();
-        }
-        pageNo++;
-        mAdapter.addData(mData);
-        mSwipeRefreshLayout.setRefreshing(false);
-        toggleShowLoading(false);
+        if (mData != null && mData.size() != 0) {
+            if (isReReresh) {
+                mList.clear();
+            }
+            pageNo++;
+            mAdapter.addData(mData);
 
-        if (isFirstReresh || isReReresh) {
-            if (isFirstReresh)
-                mRecyclerview.setAdapter(mAdapter);  //如果一开始就设置，会导致 先出现  空数据 再加载数据
-            isFirstReresh = false;
-            isReReresh = false;
-            //当数据不满一页的时候，取消加载更多
-            if (isLoadmore) {
 
-                //延时操作，避免 lastitem为 -1
+            if (isFirstReresh || isReReresh) {
+
+                isFirstReresh = false;
+                isReReresh = false;
+                //当数据不满一页的时候，取消加载更多
+                if (isLoadmore) {
+
+                    //延时操作，避免 lastitem为 -1
 //                mRecyclerview.postDelayed(new Runnable() {
 //                    @Override
 //                    public void run() {
@@ -215,17 +213,23 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
 //                    }
 //                }, 300);
 
-                mAdapter.disableLoadMoreIfNotFullPage(mRecyclerview);
+                    mAdapter.disableLoadMoreIfNotFullPage(mRecyclerview);
+                }
             }
-        }
 
-        if (isLoadmore && isLoadmoreIng) {
-            isLoadmoreIng = false;
-            if (mData == null || mData.size() == 0)
-                mAdapter.loadMoreEnd();
-            else
-                mAdapter.loadMoreComplete();
+            if (isLoadmore && isLoadmoreIng) {
+                isLoadmoreIng = false;
+                if (mData == null || mData.size() == 0)
+                    mAdapter.loadMoreEnd();
+                else
+                    mAdapter.loadMoreComplete();
+            }
+
+        } else {
+
         }
+        mSwipeRefreshLayout.setRefreshing(false);
+        toggleShowLoading(false);
 
     }
 
