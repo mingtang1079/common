@@ -39,13 +39,6 @@ public abstract class BaseRefreshActivity<T> extends BaseActivity {
     public boolean isLoadmore = false; //是否开启加载更多
     public boolean isLoadmoreIng = false;  //是否正在加载更多
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-
-    }
-
     @Override
     protected void findView() {
         super.findView();

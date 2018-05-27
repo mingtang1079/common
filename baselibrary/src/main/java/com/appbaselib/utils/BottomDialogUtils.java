@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.appbaselib.adapter.ObjectAdapter;
 import com.appbaselib.adapter.StringAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.pangu.appbaselibrary.R;
@@ -64,6 +65,31 @@ public class BottomDialogUtils {
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         StringAdapter mStringAdapter = new StringAdapter(R.layout.item_list, mStrings);
+        mStringAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                mOnItemClickListener.onItemClick(adapter, view, position);
+                mBottomSheetDialog.dismiss();
+            }
+        });
+        mRecyclerView.setAdapter(mStringAdapter);
+        mBottomSheetDialog.setContentView(mRecyclerView);
+        mBottomSheetDialog.setCancelable(true);
+        mBottomSheetDialog.setCanceledOnTouchOutside(true);
+        return mBottomSheetDialog;
+    }
+    /**
+     * @param mContext
+     * @param mStrings             list（object类型）
+     * @param mOnItemClickListener 点击事件
+     */
+    public static BottomSheetDialog showBottomDialog2(Context mContext, List<ObjectAdapter.Item> mStrings, final BaseQuickAdapter.OnItemClickListener mOnItemClickListener) {
+        final BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(mContext);
+        RecyclerView mRecyclerView = new RecyclerView(mContext);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(mContext);
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        ObjectAdapter mStringAdapter = new ObjectAdapter(R.layout.item_list, mStrings);
         mStringAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

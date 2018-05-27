@@ -217,19 +217,20 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
                 }
             }
 
-            if (isLoadmore && isLoadmoreIng) {
-                isLoadmoreIng = false;
-                if (mData == null || mData.size() == 0)
-                    mAdapter.loadMoreEnd();
-                else
-                    mAdapter.loadMoreComplete();
-            }
+
 
         } else {
 
         }
         mSwipeRefreshLayout.setRefreshing(false);
         toggleShowLoading(false);
+        if (isLoadmore && isLoadmoreIng) {
+            isLoadmoreIng = false;
+            if (mData == null || mData.size() == 0)
+                mAdapter.loadMoreEnd();
+            else
+                mAdapter.loadMoreComplete();
+        }
 
     }
 
