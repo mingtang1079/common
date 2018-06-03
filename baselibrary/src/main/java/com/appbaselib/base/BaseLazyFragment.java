@@ -53,7 +53,6 @@ public abstract class BaseLazyFragment extends Fragment {
      */
     protected Context mContext = null;
 
-    private boolean isFirstResume = true;
     private boolean isFirstVisible = true;
     private boolean isFirstInvisible = true;
     private boolean isPrepared;
@@ -101,25 +100,6 @@ public abstract class BaseLazyFragment extends Fragment {
         initPrepare();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (isFirstResume) {
-            isFirstResume = false;
-            return;
-        }
-        if (getUserVisibleHint()) {
-            onUserVisible();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (getUserVisibleHint()) {
-            onUserInvisible();
-        }
-    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
