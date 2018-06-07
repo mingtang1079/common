@@ -80,8 +80,6 @@ public abstract class BaseRefreshActivity<T> extends BaseActivity {
                     mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-        toggleShowLoading(true, "加载中……");
-        requestData();
 
     }
 

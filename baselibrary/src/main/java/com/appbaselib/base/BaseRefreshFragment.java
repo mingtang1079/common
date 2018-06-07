@@ -57,25 +57,25 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
         initList();
         //设置只在viewpager的情况下 开启懒加载
 
-        if (isLazyLoad()) {
-            if (!(this.getView().getParent() instanceof ViewPager)) {   //懒加载 如果 父控件不是  viewpager （adapter必须是fragmentadapter） 不会调用  setvisiblehint
-                initData();
-            }
-        } else {
-            initData();
-        }
+//        if (isLazyLoad()) {
+//            if (!(this.getView().getParent() instanceof ViewPager)) {   //懒加载 如果 父控件不是  viewpager （adapter必须是fragmentadapter） 不会调用  setvisiblehint
+//                initData();
+//            }
+//        } else {
+//            initData();
+//        }
 
     }
-
-    protected boolean isLazyLoad() {
-        return false;
-    }
-
-    @Override
-    protected void onFirstUserVisible() {
-        if (isLazyLoad() && this.getView().getParent() instanceof ViewPager)  //只有当 懒加载开启，而且父控件不是viewpager的情况下 才加载数据
-            initData();
-    }
+//
+//    protected boolean isLazyLoad() {
+//        return false;
+//    }
+//
+//    @Override
+//    protected void onFirstUserVisible() {
+//        if (isLazyLoad() && this.getView().getParent() instanceof ViewPager)  //只有当 懒加载开启，而且父控件不是viewpager的情况下 才加载数据
+//            initData();
+//    }
 
 
     @Override
@@ -87,13 +87,6 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
     @Override
     protected int getContentViewLayoutID() {
         return R.layout.fragment_recyclerview;
-    }
-
-    protected void initData() {
-
-        toggleShowLoading(true, "加载中……");
-        requestData();
-
     }
 
     // tips:要获取 getintent 的数据 ，必须重写 getIntentData方法，在里面去获取
@@ -149,7 +142,7 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
     //重新刷新数据
     public void refreshData(boolean isShow) {
 
-        mRecyclerview.scrollToPosition(0);
+        //   mRecyclerview.scrollToPosition(0);
         isReReresh = true;
         pageNo = 1;
         if (isShow)
@@ -164,13 +157,14 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
 
     public void loadComplete(List<? extends T> mData) {
 
-        if (isFirstReresh)
+        if (isFirstReresh) {
             mRecyclerview.setAdapter(mAdapter);  //如果一开始就设置，会导致 先出现  空数据 再加载数据
-
+        }
+        if (isReReresh) {
+            mList.clear();
+        }
         if (mData != null && mData.size() != 0) {
-            if (isReReresh) {
-                mList.clear();
-            }
+
             pageNo++;
             mAdapter.addData(mData);
 
@@ -216,7 +210,6 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
                     mAdapter.disableLoadMoreIfNotFullPage(mRecyclerview);
                 }
             }
-
 
 
         } else {
