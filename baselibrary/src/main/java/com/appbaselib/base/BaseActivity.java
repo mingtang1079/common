@@ -39,13 +39,12 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
             EventBus.getDefault().register(this);    //alter  by  tangming  加入eventbus
         }
         getIntentData();
-        initView();
         initToolbar();
+        initView();
     }
 
     // 初始化Toolbar
     @CallSuper
-    @Deprecated //直接去iniview 实例化
     protected void initToolbar() {
         if (getToolbar() != null) {   //设置标题必须在此之前设置  （比如initview）
 //            setSupportActionBar(getToolbar());
