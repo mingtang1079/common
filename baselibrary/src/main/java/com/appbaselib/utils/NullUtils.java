@@ -2,6 +2,10 @@ package com.appbaselib.utils;
 
 import android.support.annotation.Nullable;
 
+import com.appbaselib.constant.Constants;
+
+import java.math.BigDecimal;
+
 /**
  * Created by tangming on 2018/3/16.
  */
@@ -16,7 +20,8 @@ public class NullUtils {
         }
     }
 
-    public static <T extends CharSequence> T fillNull(T source) {
+    public static <T extends CharSequence> T filterNull(T source) {
         return (T) (android.text.TextUtils.isEmpty(source) ? "" : source.toString());
     }
+
 }
