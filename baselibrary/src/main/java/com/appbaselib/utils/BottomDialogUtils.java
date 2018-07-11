@@ -41,16 +41,16 @@ public class BottomDialogUtils {
 
     /**
      * 显示底部dialog
-     *
-     * @param mContext
+     *  @param mContext
      * @param mView    view
      */
-    public static void showBottomDialog(Context mContext, View mView) {
+    public static BottomSheetDialog showBottomDialog(Context mContext, View mView) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(mContext);
         bottomSheetDialog.setContentView(mView);
         bottomSheetDialog.setCancelable(true);
         bottomSheetDialog.setCanceledOnTouchOutside(true);
         bottomSheetDialog.show();
+        return bottomSheetDialog;
     }
 
     /**

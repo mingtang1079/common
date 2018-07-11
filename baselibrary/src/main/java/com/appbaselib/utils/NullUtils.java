@@ -20,7 +20,7 @@ public class NullUtils {
         }
     }
 
-    public static <T extends CharSequence> T filterNull(T source) {
+    public static <T extends CharSequence> T fillNull(T source) {
         return (T) (android.text.TextUtils.isEmpty(source) ? "" : source.toString());
     }
 

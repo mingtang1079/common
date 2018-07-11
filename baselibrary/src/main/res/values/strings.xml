@@ -98,6 +98,10 @@
         <item>58</item>
         <item>59</item>
     </string-array>
+    <string-array name="minute_display2">
+        <item>00</item>
+        <item>30</item>
+    </string-array>
 
     <string-array name="half_day">
         <item>上午</item>

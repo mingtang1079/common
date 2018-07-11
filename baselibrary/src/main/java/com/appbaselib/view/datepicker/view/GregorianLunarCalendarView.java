@@ -12,6 +12,7 @@ import com.appbaselib.widget.NumberPickerView;
 import com.pangu.appbaselibrary.R;
 
 import java.util.Calendar;
+import java.util.logging.Level;
 
 @SuppressWarnings("WrongConstant")
 public class GregorianLunarCalendarView extends LinearLayout implements NumberPickerView.OnValueChangeListener {
@@ -558,21 +559,32 @@ public class GregorianLunarCalendarView extends LinearLayout implements NumberPi
         public int minute;
         public int hour;
         public int second;
+        public String minute2;
 
         public CalendarData(int mMinute, int mHour, int mSecond) {
             minute = mMinute;
             hour = mHour;
             second = mSecond;
+
+
         }
 
         public CalendarData(int mHour, int mMinute) {
             minute = mMinute;
             hour = mHour;
+            if (mMinute < 10) {
+                minute2 = "0" + mMinute;
+            }
+            else {
+                minute2= String.valueOf(mMinute);
+            }
         }
+
         public String getTime() {
 
             return pickedYear + "-" + pickedMonthSway + "-" + pickedDay;
         }
+
         /**
          * 获取数据示例与说明：
          * Gregorian : //公历

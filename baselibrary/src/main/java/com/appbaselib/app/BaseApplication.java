@@ -1,13 +1,13 @@
 package com.appbaselib.app;
 
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.appbaselib.utils.CommonUtils;
 import com.appbaselib.utils.SystemUtils;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -39,5 +39,9 @@ public abstract class BaseApplication extends MultiDexApplication {
 
     }
 
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(base);
+    }
 }
