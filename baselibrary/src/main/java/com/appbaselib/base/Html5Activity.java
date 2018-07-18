@@ -110,7 +110,7 @@ public class Html5Activity extends BaseActivity {
      */
     private void saveData(WebSettings mWebSettings) {
         //有时候网页需要自己保存一些关键数据,Android WebView 需要自己设置
-        mWebSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+     //   mWebSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         mWebSettings.setDomStorageEnabled(true);
         mWebSettings.setDatabaseEnabled(true);
         mWebSettings.setAppCacheEnabled(true);
