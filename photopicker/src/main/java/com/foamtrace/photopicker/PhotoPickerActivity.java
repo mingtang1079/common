@@ -339,7 +339,7 @@ public class PhotoPickerActivity extends AppCompatActivity{
      */
     private void showCameraAction() {
         try {
-            Intent intent = captureManager.dispatchTakePictureIntent();
+            Intent intent = captureManager.dispatchTakePictureIntent(this);
             startActivityForResult(intent, ImageCaptureManager.REQUEST_TAKE_PHOTO);
         } catch (IOException e) {
             Toast.makeText(mCxt, R.string.msg_no_camera, Toast.LENGTH_SHORT).show();

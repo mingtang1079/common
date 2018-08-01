@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <external-path name="hm_file" path="Pictures/camerademo" />
+        <!--<files-path name="name" path="path" /> //相当 Context.getFilesDir() + path, name是分享url的一部分-->
+
+        <!--<cache-path name="name" path="path" /> //getCacheDir()-->
+
+        <!--<external-path name="name" path="path" /> //Environment.getExternalStorageDirectory()-->
+
+        <!--<external-files-path name="name" path="path" />//getExternalFilesDir(String) Context.getExternalFilesDir(null)-->
+
+        <!--<external-cache-path name="name" path="path" /> //Context.getExternalCacheDir()-->
+
+    </paths>
+</resources>

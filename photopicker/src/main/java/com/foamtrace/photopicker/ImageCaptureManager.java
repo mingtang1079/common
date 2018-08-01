@@ -1,17 +1,23 @@
 package com.foamtrace.photopicker;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -36,8 +42,8 @@ public class ImageCaptureManager {
 
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String imageFileName = "JPEG_" + timeStamp;
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator + "camerademo");
         if (!storageDir.exists()) {
             if (!storageDir.mkdir()) {
                 throw new IOException();
@@ -50,19 +56,44 @@ public class ImageCaptureManager {
     }
 
 
-    public Intent dispatchTakePictureIntent() throws IOException {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    public Intent dispatchTakePictureIntent(Context mContext) throws IOException {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File photoFile = null;
         // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(mContext.getPackageManager()) != null) {
+        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = createImageFile();
+            photoFile = createImageFile();
             // Continue only if the File was successfully created
-            if (photoFile != null) {
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(photoFile));
+//            if (photoFile != null) {
+//                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+//                        Uri.fromFile(photoFile));
+//            }
+        }
+
+        //第二参数是在manifest.xml定义 provider的authorities属性
+        Uri contentUri = FileProvider.getUriForFile(mContext, "com.foamtrace.photopicker.fileprovider", photoFile);
+
+        //兼容版本处理，因为 intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION) 只在5.0以上的版本有效
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            ClipData clip =
+                    ClipData.newUri(mContext.getContentResolver(), "A photo", contentUri);
+            intent.setClipData(clip);
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } else {
+            List<ResolveInfo> resInfoList =
+                    mContext.getPackageManager()
+                            .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                mContext.grantUriPermission(packageName, contentUri,
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             }
         }
-        return takePictureIntent;
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+
+        return intent;
     }
 
 

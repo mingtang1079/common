@@ -13,8 +13,10 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.nio.ByteBuffer;
 
 /**
  * Created by lbw on 2017/08/03
@@ -207,4 +209,14 @@ public class BitmapUtil {
 
         return dstBitmap;
     }
+
+    public static byte[] bitmapToByte(Bitmap mBitmap) {
+
+        int bytes = mBitmap.getByteCount();
+        ByteBuffer buf = ByteBuffer.allocate(bytes);
+        mBitmap.copyPixelsToBuffer(buf);
+        return buf.array();
+    }
+
+
 }
