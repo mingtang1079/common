@@ -126,7 +126,11 @@ public abstract class BaseRecyclerViewAdapter<T> extends BaseQuickAdapter<T, Bas
      */
     public T getSingleSelectedItems() {
 
-        return mData.get(mSinglePosition);
+        if (mSinglePosition >= 0) {
+            return mData.get(mSinglePosition);
+
+        } else
+            return null;
     }
 
 

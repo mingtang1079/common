@@ -98,6 +98,37 @@ public class DatePickerDialogUtils {
     }
 
     /**
+     * 获取时间选择dialog （年月）
+     * @param mContext
+     * @param mOnDateSelectedListener
+     * @return
+     */
+    public static AlertDialog.Builder getDefaultDatePickerDialog3(final Context mContext, final OnDateSelectedListener mOnDateSelectedListener) {
+
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+        View mView = LayoutInflater.from(mContext).inflate(R.layout.view_data_picler, null);
+        final GregorianLunarCalendarView mGLCView = (GregorianLunarCalendarView) mView.findViewById(R.id.calendar_view);
+        mGLCView.init();
+        mGLCView.setNumberPickerDayVisibility(View.GONE);
+        mBuilder.setView(mView);
+        mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface mDialogInterface, int mI) {
+                mOnDateSelectedListener.onDateSelected(mGLCView.getCalendarData());
+            }
+        });
+        mBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface mDialogInterface, int mI) {
+                mDialogInterface.dismiss();
+            }
+        });
+
+        return mBuilder;
+
+    }
+
+    /**
      * 获取时间选择dialog （时分秒）
      * @param mContext
      * @param mOnDateSelectedListener
