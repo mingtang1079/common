@@ -213,7 +213,7 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
 
 
         } else {
-
+            mAdapter.notifyDataSetChanged();//清空视图
         }
         mSwipeRefreshLayout.setRefreshing(false);
         toggleShowLoading(false);
