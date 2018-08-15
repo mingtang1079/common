@@ -97,6 +97,21 @@ public class AppManager {
     }
 
     /**
+     * 让在前台的activity,打开下一个activity
+     *
+     * @param activityClass
+     */
+    public void startActivity2(Class activityClass) {
+        if (getCurrentActivity()!=null)
+        {
+            getCurrentActivity().startActivity(new Intent(getCurrentActivity(),activityClass));
+        }
+        else {
+            startActivity(new Intent(mApplication, activityClass));
+        }
+    }
+
+    /**
      * 释放资源
      */
     public void release() {
