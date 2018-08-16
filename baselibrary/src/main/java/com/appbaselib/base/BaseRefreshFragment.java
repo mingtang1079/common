@@ -161,7 +161,7 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
             mRecyclerview.setAdapter(mAdapter);  //如果一开始就设置，会导致 先出现  空数据 再加载数据
         }
         if (isReReresh) {
-            mList.clear();
+          mList.clear();
         }
         if (mData != null && mData.size() != 0) {
 
@@ -213,7 +213,7 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
 
 
         } else {
-            mAdapter.notifyDataSetChanged();//清空视图
+           mAdapter.notifyDataSetChanged();//清空视图
         }
         mSwipeRefreshLayout.setRefreshing(false);
         toggleShowLoading(false);
