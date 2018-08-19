@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <RadioButton
+            android:id="@+id/one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:text="年月日"
+            android:textColor="@color/colorAccent"/>
+
+        <RadioButton
+            android:id="@+id/two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:text="时分秒"
+            android:textColor="@color/colorAccent"/>
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.appbaselib.view.datepicker.view.DateTimeView
+            android:id="@+id/calendar_time_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="16dp"
+            app:glcv_GregorianThemeColor="@color/colorAccent"
+            app:glcv_LunarThemeColor="@color/colorAccent"
+            app:glcv_NormalTextColor="#FF777777"
+            app:glcv_ScrollAnimation="true">
+
+        </com.appbaselib.view.datepicker.view.DateTimeView>
+
+        <com.appbaselib.view.datepicker.view.GregorianLunarCalendarView
+            android:id="@+id/calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="16dp"
+            app:glcv_GregorianThemeColor="@color/colorAccent"
+            app:glcv_LunarThemeColor="@color/colorAccent"
+            app:glcv_NormalTextColor="#FF777777"
+            app:glcv_ScrollAnimation="true">
+
+        </com.appbaselib.view.datepicker.view.GregorianLunarCalendarView>
+    </FrameLayout>
+
+</LinearLayout>

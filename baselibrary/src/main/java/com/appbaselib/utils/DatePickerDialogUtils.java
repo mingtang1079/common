@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import com.appbaselib.view.datepicker.data.ChineseCalendar;
 import com.appbaselib.view.datepicker.view.DateTimeView;
@@ -22,7 +23,8 @@ import java.util.Calendar;
 public class DatePickerDialogUtils {
     /**
      * 获取时间选择的View （不带时分秒）
-     * @param mContext 上下文
+     *
+     * @param mContext           上下文
      * @param mOnDateSetListener 值监听
      * @return
      */
@@ -69,6 +71,7 @@ public class DatePickerDialogUtils {
 
     /**
      * 获取时间选择dialog （年月日）
+     *
      * @param mContext
      * @param mOnDateSelectedListener
      * @return
@@ -99,6 +102,7 @@ public class DatePickerDialogUtils {
 
     /**
      * 获取时间选择dialog （年月）
+     *
      * @param mContext
      * @param mOnDateSelectedListener
      * @return
@@ -130,6 +134,7 @@ public class DatePickerDialogUtils {
 
     /**
      * 获取时间选择dialog （时分秒）
+     *
      * @param mContext
      * @param mOnDateSelectedListener
      * @return
@@ -145,6 +150,56 @@ public class DatePickerDialogUtils {
             @Override
             public void onClick(DialogInterface mDialogInterface, int mI) {
                 mOnDateSelectedListener.onDateSelected(mDateTimeView.getCalendarData());
+            }
+        });
+        mBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface mDialogInterface, int mI) {
+                mDialogInterface.dismiss();
+            }
+        });
+        return mBuilder;
+
+    }
+
+    public static AlertDialog.Builder getDefaultDatePickerDialog5(final Context mContext, final OnDateSelectedListener mOnDateSelectedListener) {
+
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+        View mView = LayoutInflater.from(mContext).inflate(R.layout.view_ymd_hms, null);
+        final GregorianLunarCalendarView mGLCView = (GregorianLunarCalendarView) mView.findViewById(R.id.calendar_view);
+        mGLCView.init();
+        final DateTimeView mDateTimeView = (DateTimeView) mView.findViewById(R.id.calendar_time_view);
+
+        RadioGroup mRadioGroup = mView.findViewById(R.id.group);
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup mRadioGroup, int mI) {
+                if (mI == R.id.one) {
+                    mGLCView.setVisibility(View.VISIBLE);
+                    mDateTimeView.setVisibility(View.GONE);
+                } else {
+
+                    mGLCView.setVisibility(View.GONE);
+                    mDateTimeView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        mBuilder.setView(mView);
+        mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface mDialogInterface, int mI) {
+
+                GregorianLunarCalendarView.CalendarData mCalendarData = new GregorianLunarCalendarView.CalendarData();
+                mCalendarData.pickedYear = mGLCView.getCalendarData().pickedYear;
+                mCalendarData.pickedMonthSway = mGLCView.getCalendarData().pickedMonthSway;
+                mCalendarData.pickedDay = mGLCView.getCalendarData().pickedDay;
+
+                mCalendarData.hour = mDateTimeView.getCalendarData().hour;
+                mCalendarData.minute = mDateTimeView.getCalendarData().minute;
+                mCalendarData.second = mDateTimeView.getCalendarData().second;
+
+                mOnDateSelectedListener.onDateSelected(mCalendarData);
             }
         });
         mBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

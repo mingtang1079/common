@@ -580,9 +580,18 @@ public class GregorianLunarCalendarView extends LinearLayout implements NumberPi
             }
         }
 
+        public CalendarData() {
+
+        }
+
         public String getTime() {
 
             return pickedYear + "-" + pickedMonthSway + "-" + pickedDay;
+        }
+
+        public String getTimeWithHms() {
+
+            return pickedYear + "-" + pickedMonthSway + "-" + pickedDay+" "+hour+":"+minute+":"+second;
         }
 
         /**
