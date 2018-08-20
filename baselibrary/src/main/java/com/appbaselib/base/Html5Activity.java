@@ -58,6 +58,7 @@ public class Html5Activity extends BaseActivity {
         mWebSettings.setUseWideViewPort(true);
         mWebSettings.setDefaultTextEncodingName("utf-8");
         mWebSettings.setLoadsImagesAutomatically(true);
+        mWebSettings.setBlockNetworkImage(false);
 
         saveData(mWebSettings);
         newWin(mWebSettings);
