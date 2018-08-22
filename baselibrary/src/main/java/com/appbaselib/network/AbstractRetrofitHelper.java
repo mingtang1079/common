@@ -80,8 +80,8 @@ public abstract class AbstractRetrofitHelper<T> {
                 clientBuilder.addInterceptor(interceptor);
             }
         }
-        clientBuilder.connectTimeout(10 * 5000L, TimeUnit.MILLISECONDS);
-        clientBuilder.readTimeout(10 * 5000L, TimeUnit.MILLISECONDS);
+        clientBuilder.connectTimeout(10 * 10000L, TimeUnit.MILLISECONDS);
+        clientBuilder.readTimeout(10 * 10000L, TimeUnit.MILLISECONDS);
         clientBuilder.retryOnConnectionFailure(true);
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
