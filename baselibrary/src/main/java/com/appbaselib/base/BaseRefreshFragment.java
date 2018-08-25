@@ -35,7 +35,7 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
     public List<T> mList;
     public BaseQuickAdapter mAdapter;
     public LinearLayoutManager mLinearLayoutManager;
-    public boolean isReReresh = true;//重新刷新 清楚数据
+    public boolean isReReresh = false;//重新刷新 清楚数据
     public int pageNo = 1;  //当前页
     public boolean isFirstReresh = true;
     public int pageSize = 10; //每页条数
@@ -169,10 +169,9 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
             mAdapter.addData(mData);
 
 
-            if (isFirstReresh || isReReresh) {
+            if (isFirstReresh) {
 
                 isFirstReresh = false;
-                isReReresh = false;
                 //当数据不满一页的时候，取消加载更多
                 if (isLoadmore) {
 
