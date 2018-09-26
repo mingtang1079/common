@@ -34,22 +34,17 @@ public class Html5Activity extends BaseActivity {
 
     @Override
     public Toolbar getToolbar() {
-        return mToolbar;
-    }
-
-    @Override
-    protected void findView() {
-        super.findView();
-
         mToolbar = findViewById(R.id.toolbar);
-        mProgressBar = findViewById(R.id.progress);
-        mWebView = findViewById(R.id.webview);
+        return mToolbar;
     }
 
     @Override
     protected void initView(Bundle mSavedInstanceState) {
 
         Log.d("Url:", url);
+
+        mProgressBar = findViewById(R.id.progress);
+        mWebView = findViewById(R.id.webview);
 
         WebSettings mWebSettings = mWebView.getSettings();
         mWebSettings.setSupportZoom(true);
