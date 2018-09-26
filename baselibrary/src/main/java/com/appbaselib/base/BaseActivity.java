@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.appbaselib.app.BaseApplication;
 import com.appbaselib.loading.VaryViewHelperController;
 import com.appbaselib.netstatus.NetUtils;
 import com.appbaselib.utils.LogUtils;
@@ -20,7 +19,6 @@ import butterknife.ButterKnife;
 
 /**
  * Created by tangming on 2016/11/15.
- * Altered by Allen on 2017/09/15, 添加Toolbar menu加载
  */
 
 public abstract class BaseActivity extends BaseAppCompatActivity {
@@ -30,19 +28,24 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-     //   DisplayUtils.setCustomDensity(this, BaseApplication.mInstance);
+        //   DisplayUtils.setCustomDensity(this, BaseApplication.mInstance);//适配
         ARouter.getInstance().inject(this);
-        findView();//用于解决部分控件使用了VaryViewHelperController，在在initView中初始化的问题(R2不知道为啥不起作用)
-        ButterKnife.bind(this);
+        if (isBind()) {
+            ButterKnife.bind(this);
+        }
         if (null != getLoadingTargetView()) {
             mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
         }
         if (registerEventBus()) {
             EventBus.getDefault().register(this);    //alter  by  tangming  加入eventbus
         }
-        getIntentData();
         initToolbar();
-        initView();
+        initView(savedInstanceState);
+    }
+
+    //是否注册butterknife
+    private boolean isBind() {
+        return false;
     }
 
     // 初始化Toolbar
@@ -58,24 +61,10 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
                     finish();
                 }
             });
-        //    getToolbar().setTitleTextAppearance(mContext,R.style.ToolbarTitleText);
+            //    getToolbar().setTitleTextAppearance(mContext,R.style.ToolbarTitleText);
         } else {
             LogUtils.e("木有toolbar");
         }
-    }
-
-    /**
-     * moudle 里面的 butternife 使用 R2好像无效
-     */
-    protected void findView() {
-
-    }
-
-    /**
-     * 获取intentdata
-     */
-    protected void getIntentData() {
-
     }
 
     public abstract Toolbar getToolbar();
@@ -113,7 +102,7 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
         }
     }
 
-    protected abstract void initView();
+    protected abstract void initView(Bundle mSavedInstanceState);
 
     /**
      * 是否注册EventBus，默认不注册

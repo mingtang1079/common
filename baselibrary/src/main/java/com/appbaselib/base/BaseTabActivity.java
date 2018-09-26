@@ -1,19 +1,15 @@
 package com.appbaselib.base;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.appbaselib.adapter.FragmentAdapter;
-import com.appbaselib.utils.ScreenUtils;
 import com.pangu.appbaselibrary.R;
-import java.lang.reflect.Field;
+
 import java.util.List;
 
 /**
@@ -28,7 +24,7 @@ public abstract class BaseTabActivity extends BaseActivity {
     FragmentAdapter mFragmentAdapter;
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle mSavedInstanceState) {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTab = (TabLayout) findViewById(R.id.tab);
         mViewpager = (ViewPager) findViewById(R.id.viewpager);

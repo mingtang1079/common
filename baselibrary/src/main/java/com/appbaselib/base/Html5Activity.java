@@ -13,7 +13,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
@@ -48,7 +47,7 @@ public class Html5Activity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle mSavedInstanceState) {
 
         Log.d("Url:", url);
 
