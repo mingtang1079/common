@@ -10,7 +10,7 @@ ext {
     ]
 
     version = [
-            VSupportSdk  : "26.1.0",
+            VSupportSdk  : "27.1.1",
             VRetrofitSdk : "2.1.0",
             VOkhttp      : "3.4.2",
             VDbFlow      : "4.0.5",
@@ -51,7 +51,7 @@ ext {
             "glide"                        : "com.github.bumptech.glide:glide:3.7.0",
             "picasso"                      : "com.squareup.picasso:picasso:2.5.2",
             "Luban"                        : "top.zibin:Luban:1.0.9",
-            "photoview"                    : "com.github.chrisbanes.photoview:library:+",
+            "photoview"                    : "com.github.chrisbanes:PhotoView:2.1.4",
             "circleimageview"              : "de.hdodenhof:circleimageview:2.1.0",
 
             //view
