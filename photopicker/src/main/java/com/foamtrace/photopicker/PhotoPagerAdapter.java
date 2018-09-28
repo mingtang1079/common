@@ -9,13 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.OnPhotoTapListener;
+import com.github.chrisbanes.photoview.PhotoView;
+import com.github.chrisbanes.photoview.PhotoViewAttacher;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import uk.co.senab.photoview.PhotoView;
-import uk.co.senab.photoview.PhotoViewAttacher;
-
 
 /**
  * Created by donglua on 15/6/21.
@@ -64,9 +64,9 @@ public class PhotoPagerAdapter extends PagerAdapter {
                 .crossFade()
                 .into(imageView);
 
-        imageView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+        imageView.setOnPhotoTapListener(new OnPhotoTapListener() {
             @Override
-            public void onPhotoTap(View view, float x, float y) {
+            public void onPhotoTap(ImageView view, float x, float y) {
                 if (listener != null) {
                     listener.OnPhotoTapListener(view, x, y);
                 }

@@ -13,8 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import butterknife.ButterKnife;
-
 /**
  * Created by tangming on 2018/5/3.
  */
@@ -53,7 +51,6 @@ public abstract class BaseLifeCycleView extends FrameLayout implements Lifecycle
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate() {
         View mView = LayoutInflater.from(getContext()).inflate(getContentViewLayoutID(), this, false);
-        ButterKnife.bind(this, mView);
         addView(mView);
     }
 

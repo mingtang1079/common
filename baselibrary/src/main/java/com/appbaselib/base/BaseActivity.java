@@ -14,7 +14,6 @@ import com.pangu.appbaselibrary.R;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.ButterKnife;
 
 
 /**

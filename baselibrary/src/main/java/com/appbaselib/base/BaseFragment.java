@@ -13,8 +13,6 @@ import com.appbaselib.loading.VaryViewHelperController;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 /**
@@ -23,13 +21,11 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends BaseLazyFragment {
 
     private VaryViewHelperController mVaryViewHelperController = null;
-    Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ARouter.getInstance().inject(this);
-
     }
 
     /**
@@ -39,15 +35,6 @@ public abstract class BaseFragment extends BaseLazyFragment {
      */
     protected boolean registerEventBus() {
         return false;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View mView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, mView);
-
-        return mView;
     }
 
     @Override
@@ -65,9 +52,6 @@ public abstract class BaseFragment extends BaseLazyFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
         if (registerEventBus()) {
             EventBus.getDefault().unregister(this);
         }
