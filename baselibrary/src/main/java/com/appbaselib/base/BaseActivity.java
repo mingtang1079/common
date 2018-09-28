@@ -30,9 +30,6 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         //   DisplayUtils.setCustomDensity(this, BaseApplication.mInstance);//适配
         ARouter.getInstance().inject(this);
-        if (isBind()) {
-            ButterKnife.bind(this);
-        }
         if (null != getLoadingTargetView()) {
             mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
         }
@@ -41,11 +38,6 @@ public abstract class BaseActivity extends BaseAppCompatActivity {
         }
         initToolbar();
         initView(savedInstanceState);
-    }
-
-    //是否注册butterknife
-    private boolean isBind() {
-        return false;
     }
 
     // 初始化Toolbar

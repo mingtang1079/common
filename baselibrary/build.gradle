@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.jakewharton.butterknife'
-
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -86,7 +84,6 @@ dependencies {
 
     compile rootProject.ext.dependencies["okhttp3"]
     compile rootProject.ext.dependencies["okhttp3-logging-interceptor"]
-    //compile rootProject.ext.dependencies["retrofit-converter-jackson"]
     compile(rootProject.ext.dependencies["retrofit"]) {
         exclude module: 'okhttp'
     }
@@ -99,10 +96,6 @@ dependencies {
         exclude module: 'rxjava2'
         exclude module: 'okhttp'
         exclude module: 'retrofit'
-    }
-    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
-        exclude module: 'support-annotations'
-        exclude module: 'butterknife-annotations'
     }
     compile rootProject.ext.dependencies["circleimageview"]
 

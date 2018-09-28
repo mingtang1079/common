@@ -6,15 +6,16 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
+
 
 /**
  * Created by donglua on 15/6/21.
@@ -65,11 +66,12 @@ public class PhotoPagerAdapter extends PagerAdapter {
 
         imageView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
             @Override
-            public void onPhotoTap(View view, float v, float v1) {
+            public void onPhotoTap(View view, float x, float y) {
                 if (listener != null) {
-                    listener.OnPhotoTapListener(view, v, v1);
+                    listener.OnPhotoTapListener(view, x, y);
                 }
             }
+
         });
 
         container.addView(itemView);
