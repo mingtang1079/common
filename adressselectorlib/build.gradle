@@ -22,12 +22,12 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation(rootProject.ext.dependencies["recyclerview-v7"]) {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(rootProject.ext.dependencies["recyclerview-v7"]) {
         exclude module: 'support-annotations'
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
-    implementation 'com.google.code.gson:gson:2.8.0'
+    compile 'com.google.code.gson:gson:2.8.0'
 
 }
