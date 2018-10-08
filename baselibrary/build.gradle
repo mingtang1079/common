@@ -117,6 +117,4 @@ dependencies {
     compile rootProject.ext.dependencies["autodispose-android-archcomponents"]
     compile project(':adressselectorlib')
 
-
-
 }
