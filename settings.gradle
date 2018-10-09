@@ -1,1 +1,1 @@
-include ':baselibrary',  ':photopicker','adressselectorlib'
+include ':baselibrary',  ':photopicker','adressselectorlib','kotlin-ext'

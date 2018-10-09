@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: "config.gradle"
 buildscript {
+    ext.kotlin_version = '1.2.30'
     repositories {
         jcenter()
         maven {
@@ -10,9 +11,10 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
-        classpath 'com.novoda:bintray-release:0.5.0'
+      //  classpath 'com.novoda:bintray-release:0.5.0'//发布插件上传
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
     }
 }
 allprojects {
