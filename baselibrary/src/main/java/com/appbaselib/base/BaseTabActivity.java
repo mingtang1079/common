@@ -13,7 +13,6 @@ import com.pangu.appbaselibrary.R;
 import java.util.List;
 
 /**
- * Created by tangming on 2017/6/6.   简单封装 关于改变tab数字的情况,自行在子类通过fragmment调用父activity方法实现 （例如接口回调）
  */
 public abstract class BaseTabActivity extends BaseActivity {
 

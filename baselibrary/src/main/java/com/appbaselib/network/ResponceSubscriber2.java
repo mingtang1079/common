@@ -90,11 +90,11 @@ public abstract class ResponceSubscriber2<T> implements Observer<BaseModel<T>> {
     public void onNext(BaseModel<T> mBaseModel) {
         if (mContext != null)
             mProgressDialog.dismiss();
-        if (mBaseModel.status) {
+        if (mBaseModel.getStatus()) {
             onSucess(mBaseModel);//android生命周期组件里面 包装请求状态会用到
 
         } else {
-            onFail(mBaseModel.msg);
+            onFail(mBaseModel.getMsg());
         }
     }
 
@@ -104,7 +104,7 @@ public abstract class ResponceSubscriber2<T> implements Observer<BaseModel<T>> {
         if (mContext != null)
             mProgressDialog.dismiss();
 
-        if (!NetWorkUtils.isNetworkConnected(BaseApplication.mInstance)) { //判断网络
+        if (!NetWorkUtils.isNetworkConnected(BaseApplication.Companion.getMInstance())) { //判断网络
             onFail("网络不可用");
         } else if (e instanceof ServerException) {
             onFail(e.getMessage());

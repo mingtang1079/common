@@ -10,13 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.appbaselib.adapter.ObjectAdapter;
-import com.appbaselib.adapter.StringAdapter;
+import com.appbaselib.base.BaseRecyclerViewAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.pangu.appbaselibrary.R;
 
 import java.util.List;
-
 
 
 /**
@@ -41,7 +40,8 @@ public class BottomDialogUtils {
 
     /**
      * 显示底部dialog
-     *  @param mContext
+     *
+     * @param mContext
      * @param mView    view
      */
     public static BottomSheetDialog showBottomDialog(Context mContext, View mView) {
@@ -78,12 +78,13 @@ public class BottomDialogUtils {
         mBottomSheetDialog.setCanceledOnTouchOutside(true);
         return mBottomSheetDialog;
     }
+
     /**
      * @param mContext
      * @param mStrings             list（object类型）
      * @param mOnItemClickListener 点击事件
      */
-    public static BottomSheetDialog showBottomDialog2(Context mContext, List<ObjectAdapter.Item> mStrings, final BaseQuickAdapter.OnItemClickListener mOnItemClickListener) {
+    public static BottomSheetDialog showBottomDialog2(Context mContext, List<Item> mStrings, final BaseQuickAdapter.OnItemClickListener mOnItemClickListener) {
         final BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(mContext);
         RecyclerView mRecyclerView = new RecyclerView(mContext);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(mContext);
@@ -130,5 +131,33 @@ public class BottomDialogUtils {
         mBottomSheetDialog.setCancelable(true);
         mBottomSheetDialog.setCanceledOnTouchOutside(true);
         return mBottomSheetDialog;
+    }
+
+    public static class ObjectAdapter extends BaseRecyclerViewAdapter<Item> {
+        public ObjectAdapter(int layoutResId, List<Item> data) {
+            super(layoutResId, data);
+        }
+
+        @Override
+        protected void convert(BaseViewHolder helper, Item item) {
+
+            helper.setText(R.id.name, item.getValue());
+        }
+
+    }
+    public static class StringAdapter extends BaseRecyclerViewAdapter<String> {
+        public StringAdapter(int layoutResId, List<String> data) {
+            super(layoutResId, data);
+        }
+
+        @Override
+        protected void convert(BaseViewHolder helper, String item) {
+
+            helper.setText(R.id.name,item);
+        }
+    }
+
+    public interface Item {
+        String getValue();
     }
 }

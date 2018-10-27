@@ -7,6 +7,10 @@ import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 
+/**
+ * 今日头条适配工具类
+ *
+ */
 public class DisplayUtils {
 
     private static float sRoncompatDennsity;

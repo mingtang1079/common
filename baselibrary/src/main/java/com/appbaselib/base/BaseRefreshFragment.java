@@ -26,10 +26,7 @@ import java.util.List;
 
 public abstract class BaseRefreshFragment<T> extends BaseFragment {
 
-
-    //  @BindView(R2.id.recyclerview)
     public RecyclerView mRecyclerview;
-    // @BindView(R2.id.swipe)
     public SwipeRefreshLayout mSwipeRefreshLayout;
 
     public List<T> mList;

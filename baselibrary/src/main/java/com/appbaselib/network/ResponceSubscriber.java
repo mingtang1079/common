@@ -91,11 +91,11 @@ public abstract class ResponceSubscriber<T> implements Observer<BaseModel<T>> {
         if (mContext != null)
             mProgressDialog.dismiss();
 
-        if (mBaseModel.status) {
-            onSucess(mBaseModel.data);
+        if (mBaseModel.getStatus()) {
+            onSucess(mBaseModel.getData());
 
         } else {
-            onFail(mBaseModel.msg);
+            onFail(mBaseModel.getMsg());
         }
     }
 
@@ -105,7 +105,7 @@ public abstract class ResponceSubscriber<T> implements Observer<BaseModel<T>> {
         if (mContext != null)
             mProgressDialog.dismiss();
 
-        if (!NetWorkUtils.isNetworkConnected(BaseApplication.mInstance)) { //判断网络
+        if (!NetWorkUtils.isNetworkConnected(BaseApplication.Companion.getMInstance())) { //判断网络
             onFail("网络不可用");
         } else if (e instanceof ServerException) {
             onFail(e.getMessage());

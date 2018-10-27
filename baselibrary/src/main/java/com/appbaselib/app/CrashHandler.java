@@ -1,10 +1,5 @@
 package com.appbaselib.app;
 
-/**
- * Description: TODO
- * Created by lbw on 2017/6/8 0008.
- */
-
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;

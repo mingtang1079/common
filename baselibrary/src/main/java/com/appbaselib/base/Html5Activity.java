@@ -59,7 +59,6 @@ public class Html5Activity extends BaseActivity {
 
         mWebView.setWebChromeClient(webChromeClient);
         mWebView.setWebViewClient(webViewClient);
-        //调用JS方法.安卓版本大于17,加上注解 @JavascriptInterface
         mWebSettings.setJavaScriptEnabled(true);
 
         mWebView.loadUrl(url);
@@ -80,14 +79,14 @@ public class Html5Activity extends BaseActivity {
     public void onPause() {
         super.onPause();
         mWebView.onPause();
-        mWebView.pauseTimers(); //小心这个！！！暂停整个 WebView 所有布局、解析、JS。
+       // mWebView.pauseTimers(); //暂停整个 WebView 所有布局、解析、JS。
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mWebView.onResume();
-        mWebView.resumeTimers();
+      //  mWebView.resumeTimers();
     }
 
     /**

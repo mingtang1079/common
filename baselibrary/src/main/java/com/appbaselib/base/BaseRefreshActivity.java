@@ -22,9 +22,7 @@ import java.util.List;
 
 public abstract class BaseRefreshActivity<T> extends BaseActivity {
 
-    //    @BindView(R2.id.recyclerview)  (不晓得为啥没用 view为空)
     public RecyclerView mRecyclerview;
-    //    @BindView(R2.id.swipe)
     public SwipeRefreshLayout mSwipeRefreshLayout;
 
     public List<T> mList;
@@ -56,7 +54,7 @@ public abstract class BaseRefreshActivity<T> extends BaseActivity {
 
         View mView = getLayoutInflater().inflate(R.layout.view_empty, (ViewGroup) mRecyclerview.getParent(), false);
         mList = new ArrayList<>();
-        mLinearLayoutManager = new LinearLayoutManager(mContext);
+        mLinearLayoutManager = new LinearLayoutManager(getMContext());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(mLinearLayoutManager);
         initAdapter();
@@ -166,7 +164,7 @@ public abstract class BaseRefreshActivity<T> extends BaseActivity {
             });
         } else {
             toggleShowLoading(false);
-            ToastUtils.showToast(mContext, mes, Toast.LENGTH_SHORT);
+            ToastUtils.showToast(getMContext(), mes, Toast.LENGTH_SHORT);
             if (mSwipeRefreshLayout != null)
                 mSwipeRefreshLayout.setRefreshing(false);
 

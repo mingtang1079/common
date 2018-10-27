@@ -55,7 +55,7 @@ public class RxHelper {
                         .doOnSubscribe(new Consumer<Disposable>() {
                             @Override
                             public void accept(Disposable disposable) throws Exception {
-                                if (!NetUtils.isNetworkAvailable(BaseApplication.mInstance)) {
+                                if (!NetUtils.isNetworkAvailable(BaseApplication.Companion.getMInstance())) {
                                     // TODO: 2018/3/14
                                 }
                             }
@@ -113,27 +113,6 @@ public class RxHelper {
 
     }
 
-    /**
-     * 创建成功的数据
-     *
-     * @param data
-     * @param <T>
-     * @return
-     */
-    private static <T> Observable<T> createData(final T data) {
-        return Observable.create(new ObservableOnSubscribe<T>() {
-            @Override
-            public void subscribe(ObservableEmitter<T> subscriber) throws Exception {
-                try {
-                    subscriber.onNext(data);
-                    subscriber.onComplete();
-                } catch (Exception e) {
-                    subscriber.onError(e);
-                }
-            }
-        });
-
-    }
 
     /**
      * 线程切换的封装
