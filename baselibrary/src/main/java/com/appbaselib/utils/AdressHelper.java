@@ -19,7 +19,7 @@ public class AdressHelper {
     public static BottomSheetDialog showAddressSelector(Context mContext, final OnItemClickListener mOnItemClickListener) {
 
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(mContext);
-        AddressSelector mAddressSelector = new AddressSelector(mContext);
+        AddressSelector mAddressSelector  = new AddressSelector(mContext);
         mAddressSelector.setAllCitiys(CityHelper.getInsatance().getCities(mContext));
         mAddressSelector.setOnItemClickListener(new OnItemClickListener() {
             @Override

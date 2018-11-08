@@ -23,7 +23,7 @@ abstract class BaseActivity : BaseAppCompatActivity() {
 
     private lateinit var mVaryViewHelperController: VaryViewHelperController
 
-    abstract fun getToolbar(): Toolbar;
+    abstract fun getToolbar(): Toolbar?;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
