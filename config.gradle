@@ -16,7 +16,6 @@ ext {
             VDbFlow      : "4.0.5",
             VDagger2     : "2.11",
             VFloo        : "1.1.0",
-            VButterknife : "8.8.1",
             VRxlifecycle : "1.0",
             VRxlifecycle2: "2.1.0",
             VEspressoSdk : "2.2.2",
@@ -54,10 +53,6 @@ ext {
             "Luban"                             : "top.zibin:Luban:1.0.9",
             "photoview"                         : "com.github.chrisbanes:PhotoView:2.1.4",
             "circleimageview"                   : "de.hdodenhof:circleimageview:2.1.0",
-
-            //view
-            "butterknife"                       : "com.jakewharton:butterknife:${version["VButterknife"]}",
-            "butterknife-compiler"              : "com.jakewharton:butterknife-compiler:${version["VButterknife"]}",
 
             "numberprogressbar"                 : "com.daimajia.numberprogressbar:library:1.2@aar",
             "nineoldandroids"                   : "com.nineoldandroids:library:2.4.0",

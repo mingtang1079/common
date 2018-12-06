@@ -8,6 +8,7 @@ import android.util.Log
 
 import com.appbaselib.utils.CommonUtils
 import com.appbaselib.utils.SystemUtils
+import com.squareup.leakcanary.LeakCanary
 import java.util.concurrent.TimeUnit
 
 import javax.net.ssl.HostnameVerifier
@@ -31,7 +32,12 @@ abstract class BaseApplication : MultiDexApplication() {
 
         mActivityLifecycle = ActivityLifecycle(this)
         registerActivityLifecycleCallbacks(mActivityLifecycle)
-
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 
     override fun attachBaseContext(base: Context) {

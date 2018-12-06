@@ -10,6 +10,7 @@ import com.appbaselib.app.BaseApplication;
 import com.appbaselib.base.BaseModel;
 import com.appbaselib.rx.ServerException;
 import com.appbaselib.utils.NetWorkUtils;
+import com.appbaselib.utils.ToastUtils;
 import com.google.gson.JsonSyntaxException;
 
 import io.reactivex.Observer;
@@ -121,6 +122,10 @@ public abstract class ResponceSubscriber<T> implements Observer<BaseModel<T>> {
 
     protected abstract void onSucess(T t);
 
-    protected abstract void onFail(String message);
+    protected void onFail(String message) {
+        ToastUtils.showShort(BaseApplication.Companion.getMInstance(), message);
+    }
+
+    ;
 
 }
