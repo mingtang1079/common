@@ -7,7 +7,8 @@ import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-object RxHelper {
+
+object RxCompose {
 
     /**
      * 不对结果进行预处理 (不带生命周期) 返回全部实体
@@ -33,19 +34,16 @@ object RxHelper {
     </T> */
     fun <T> handleResult(context: LifecycleOwner): ObservableTransformer<BaseModel<T>, T> {
 
-        return  ObservableTransformer { upstream ->
+        return ObservableTransformer { upstream ->
 
             upstream.flatMap {
 
-                if (it.code==200)
-                {
+                if (it.code == 200) {
                     createData(it.data)
-                }
-                else{
+                } else {
                     Observable.error(ServerException(it.msg))
                 }
-            }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                //    .compose(RxLife.with(context).bindToLifecycle())
+            }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).compose(RxLife.with(context).bindToLifecycle())
 
         }
 
