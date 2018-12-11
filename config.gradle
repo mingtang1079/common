@@ -48,7 +48,7 @@ ext {
             "gson"                              : "com.google.code.gson:gson:2.8.2",
 
             //image
-            "glide"                             : "com.github.bumptech.glide:glide:3.7.0",
+            "glide"                             : "com.github.bumptech.glide:glide:4.8.0",
             "picasso"                           : "com.squareup.picasso:picasso:2.5.2",
             "Luban"                             : "top.zibin:Luban:1.0.9",
             "photoview"                         : "com.github.chrisbanes:PhotoView:2.1.4",

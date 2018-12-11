@@ -56,7 +56,7 @@ object RxCompose {
      * @return
     </T> */
 
-    fun <T> rxSchedulerHelper(): ObservableTransformer<BaseModel<T>, BaseModel<T>> {
+    fun <T> schedulerHelper(): ObservableTransformer<BaseModel<T>, BaseModel<T>> {
         return ObservableTransformer { upstream ->
             upstream.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
