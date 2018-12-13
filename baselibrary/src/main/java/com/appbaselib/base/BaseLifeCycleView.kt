@@ -16,7 +16,7 @@ import android.widget.FrameLayout
  * Created by tangming on 2018/5/3.
  */
 
-abstract class BaseLifeCycleView : FrameLayout, LifecycleObserver {
+open abstract class BaseLifeCycleView : FrameLayout, LifecycleObserver {
 
     protected abstract val contentViewLayoutID: Int
 
@@ -45,28 +45,28 @@ abstract class BaseLifeCycleView : FrameLayout, LifecycleObserver {
 
     @CallSuper
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreate() {
+   open fun onCreate() {
         val mView = LayoutInflater.from(context).inflate(contentViewLayoutID, this, false)
         addView(mView)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart() {
+    open fun onStart() {
 
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume() {
+    open fun onResume() {
 
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStop() {
+    open fun onStop() {
 
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestory() {
+    open fun onDestory() {
     }
 
 
