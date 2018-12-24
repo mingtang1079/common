@@ -277,8 +277,7 @@ public class AppManager {
             killAll();
             if (mActivityList != null)
                 mActivityList = null;
-            ActivityManager activityMgr =
-                    (ActivityManager) mApplication.getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager activityMgr = (ActivityManager) mApplication.getSystemService(Context.ACTIVITY_SERVICE);
             //   activityMgr.killBackgroundProcesses(mApplication.getPackageName());
             System.exit(0);
         } catch (Exception e) {

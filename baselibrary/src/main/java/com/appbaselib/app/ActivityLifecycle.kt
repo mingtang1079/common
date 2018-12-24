@@ -28,6 +28,7 @@ class ActivityLifecycle(private val mApplication: Application) : Application.Act
         if (!isNotAdd) {
             mAppManager.addActivity(activity)
         }
+        mAppManager.currentActivity = activity //在Activity里面很多时候 需要立马获取当前context
 
     }
 
@@ -40,9 +41,7 @@ class ActivityLifecycle(private val mApplication: Application) : Application.Act
     }
 
     override fun onActivityPaused(activity: Activity) {
-        if (mAppManager.currentActivity === activity) {
-            mAppManager.currentActivity = null
-        }
+
     }
 
     override fun onActivityStopped(activity: Activity) {
