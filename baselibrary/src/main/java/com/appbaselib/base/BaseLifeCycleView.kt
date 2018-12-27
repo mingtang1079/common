@@ -60,6 +60,11 @@ open abstract class BaseLifeCycleView : FrameLayout, LifecycleObserver {
 
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    open  fun onPause(){
+
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     open fun onStop() {
 
