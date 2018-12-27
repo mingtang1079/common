@@ -16,18 +16,19 @@ import io.reactivex.disposables.Disposable
 /**
  * 通用订阅者,用于统一处理回调
  */
-abstract class MySubscriber<T> : Observer<T> {
+abstract class MySubscriber<T>(context: Context? = null, mMessage: String? = "请稍后……", title: String? = null) : Observer<T> {
 
     private var mContext: Context? = null
     private var mDisposable: Disposable? = null
     private var mProgressDialog: ProgressDialog? = null
     private var title: String? = null
     private var message: String? = null
+
     /**
      * @param context  context
      * @param mMessage dialog message
      */
-    constructor(context: Context?=null, mMessage: String? = "请稍后……", title: String? = null) {
+    init {
         this.mContext = context
         this.message = mMessage
         this.title = title
