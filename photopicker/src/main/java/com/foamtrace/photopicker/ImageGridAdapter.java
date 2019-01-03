@@ -14,6 +14,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 /**
  * ͼƬAdapter
  * Created by Nereo on 2015/4/7.
@@ -236,10 +238,7 @@ public class ImageGridAdapter extends BaseAdapter {
                 // 显示图片
                 Glide.with(mContext)
                         .load(imageFile)
-                        .placeholder(R.mipmap.default_error)
-                        .error(R.mipmap.default_error)
-                        .override(mItemSize, mItemSize)
-                        .centerCrop()
+                        .transition(withCrossFade())
                         .into(image);
             }
         }

@@ -17,6 +17,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 /**
  * Created by donglua on 15/6/21.
  */
@@ -60,8 +62,8 @@ public class PhotoPagerAdapter extends PagerAdapter {
         Glide.with(mContext)
                 .load(uri)
 //            .placeholder(R.mipmap.default_error)
-                .error(R.mipmap.default_error)
-                .crossFade()
+                .transition(withCrossFade())
+
                 .into(imageView);
 
         imageView.setOnPhotoTapListener(new OnPhotoTapListener() {

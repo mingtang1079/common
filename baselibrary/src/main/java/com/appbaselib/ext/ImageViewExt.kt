@@ -8,7 +8,6 @@ import com.bumptech.glide.request.RequestOptions
 
 /**
  * Description: ImageView相关
- * Create by lxj, at 2018/12/5
  */
 
 /**

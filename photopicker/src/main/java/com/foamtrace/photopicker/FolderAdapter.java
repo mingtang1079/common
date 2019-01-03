@@ -14,6 +14,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 /**
  * 文件夹Adapter
  * Created by Nereo on 2015/4/7.
@@ -82,9 +84,7 @@ public class FolderAdapter extends BaseAdapter {
 
                     Glide.with(mContext)
                             .load(new File(f.cover.path))
-                            .error(R.mipmap.default_error)
-                            .override(mImageSize, mImageSize)
-                            .centerCrop()
+                            .transition(withCrossFade())
                             .into(holder.cover);
                 }
             }else {
@@ -139,10 +139,7 @@ public class FolderAdapter extends BaseAdapter {
             // 显示图片
             Glide.with(mContext)
                     .load(new File(data.cover.path))
-                    .placeholder(R.mipmap.default_error)
-                    .error(R.mipmap.default_error)
-                    .override(mImageSize, mImageSize)
-                    .centerCrop()
+                    .transition(withCrossFade())
                     .into(cover);
         }
     }
