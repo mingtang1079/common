@@ -8,9 +8,10 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.3.2'
       //  classpath 'com.novoda:bintray-release:0.5.0'//发布插件上传
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"

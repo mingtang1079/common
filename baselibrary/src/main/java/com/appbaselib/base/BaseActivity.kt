@@ -29,14 +29,15 @@ abstract class BaseActivity : BaseAppCompatActivity() {
         super.onCreate(savedInstanceState)
         //   DisplayUtils.setCustomDensity(this, BaseApplication.mInstance);//适配
         ARouter.getInstance().inject(this)
-        if (null != getLoadingTargetView()) {
-            mVaryViewHelperController = VaryViewHelperController(getLoadingTargetView())
-        }
+
         if (registerEventBus()) {
             EventBus.getDefault().register(this)    //alter  by  tangming  加入eventbus
         }
         initToolbar()
         initView(savedInstanceState)
+        if (null != getLoadingTargetView()) {
+            mVaryViewHelperController = VaryViewHelperController(getLoadingTargetView())
+        }
     }
 
     // 初始化Toolbar

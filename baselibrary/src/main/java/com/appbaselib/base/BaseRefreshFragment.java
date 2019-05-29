@@ -165,10 +165,10 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment {
             pageNo++;
             mAdapter.addData(mData);
 
-
-            if (isFirstReresh) {
+            if (isFirstReresh||isReReresh) {
 
                 isFirstReresh = false;
+                isReReresh=false;
                 //当数据不满一页的时候，取消加载更多
                 if (isLoadmore) {
 
