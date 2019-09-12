@@ -5,9 +5,9 @@ import android.arch.lifecycle.GenericLifecycleObserver
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleOwner
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
+import androidx.core.app.Fragment
+import androidx.core.app.FragmentActivity
+import androidx.core.app.FragmentManager
 import com.appbaselib.app.BaseApplication
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject

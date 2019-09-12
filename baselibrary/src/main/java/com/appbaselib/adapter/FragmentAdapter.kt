@@ -1,8 +1,8 @@
 package com.appbaselib.adapter
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.core.app.Fragment
+import androidx.core.app.FragmentManager
+import androidx.core.app.FragmentPagerAdapter
 
 class FragmentAdapter(fm: FragmentManager, private val fragments: List<Fragment>, private val titles: Array<String>) : FragmentPagerAdapter(fm) {
 

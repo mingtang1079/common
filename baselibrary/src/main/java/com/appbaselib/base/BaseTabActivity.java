@@ -2,8 +2,8 @@ package com.appbaselib.base;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import androidx.core.app.Fragment;
+import androidx.core.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 

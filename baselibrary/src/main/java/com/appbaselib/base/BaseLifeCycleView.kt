@@ -6,7 +6,7 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Context
 import android.support.annotation.CallSuper
-import android.support.v4.app.SupportActivity
+import androidx.core.app.SupportActivity
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
