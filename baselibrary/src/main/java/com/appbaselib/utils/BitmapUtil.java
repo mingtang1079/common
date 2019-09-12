@@ -160,41 +160,6 @@ public class BitmapUtil {
     }
 
 
-    /**
-     * 合成出图、文字
-     *
-     * @param src
-     * @param color
-     * @param text
-     * @return
-     */
-    public static Bitmap compoundBitmap(Context context, Bitmap src, int color, String text) {
-        if (src == null) {
-            return null;
-        }
-        int w = src.getWidth();
-        int h = src.getHeight();
-        Bitmap rBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Canvas cv = new Canvas(rBitmap);
-        // cv.drawBitmap(src, 0, 0, null);
-        //加入图片
-        if (color != 0) {
-            cv.drawColor(color, PorterDuff.Mode.SRC_IN);
-        }
-        //加入文字
-        if (text != null) {
-            Paint paint = new Paint();
-            paint.setColor(Color.WHITE);
-            paint.setAntiAlias(true);
-            paint.setTextSize(ScreenUtils.sp2px(context, 14));
-            float xPos = w / 2 - paint.measureText(text) / 2;
-            float yPos = h / 2 - paint.measureText(text) / 2;
-            cv.drawText(text, xPos, yPos, paint);
-        }
-        cv.save(Canvas.ALL_SAVE_FLAG);
-        cv.restore();
-        return rBitmap;
-    }
 
     /**
      * @param src
