@@ -1,18 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: "config.gradle"
 buildscript {
-    ext.kotlin_version = '1.2.30'
+    ext.kotlin_version = '1.3.21'//kotlin的版本
     repositories {
+        maven { url "https://maven.google.com" }
+        maven { url 'https://jitpack.io' }
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
         google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
-      //  classpath 'com.novoda:bintray-release:0.5.0'//发布插件上传
+        //  classpath 'com.novoda:bintray-release:0.5.0'//发布插件上传
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
@@ -20,16 +18,15 @@ buildscript {
 }
 allprojects {
     repositories {
+        google()
+        maven { url "https://maven.google.com" }
         jcenter()
         maven { url "https://jitpack.io" }
         maven {
             url 'http://jcenter.bintray.com/'
         }
-        maven { url "https://maven.google.com" }
-
         maven {
-            url 'https://maven.google.com/'
-            name 'Google'
+            url 'https://dl.google.com/dl/android/maven2/'
         }
     }
 }
