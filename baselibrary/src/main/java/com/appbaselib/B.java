@@ -10,3 +10,4 @@ package com.appbaselib;
 public class B {
     public String b;
 }
+
