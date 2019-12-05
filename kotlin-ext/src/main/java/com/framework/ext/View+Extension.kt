@@ -56,7 +56,6 @@ fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener {
  * 带延迟过滤的点击事件View扩展
  * @param delay Long 延迟时间，默认600毫秒
  * @param block: (T) -> Unit 函数
- * @return Unit
  */
 fun <T : View> T.clickWithTrigger(time: Long = 600, block: (T) -> Unit){
     triggerDelay = time
